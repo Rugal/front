@@ -1,12 +1,9 @@
-imsApp = angular.module('imsApp', ['ngRoute', 'ngAnimate']);
+imsApp = angular.module('imsApp', []);
 
-imsApp.config(function ($routeProvider)
-{
-    $routeProvider
-            .when('/login', {templateUrl: 'login.html'})
-            .when('/student', {templateUrl: 'student.html'})
-            .when('/admin', {templateUrl: 'admin.html'});
-});
 
-imsApp.controller('Controller', function ($scope) {
-});
+imsApp.controller('indexController', ['$scope', function ($scope) {
+        $scope.student='student.html';
+        $scope.admin='admin.html';
+        $scope.login='login.html';
+        $scope.current=$scope.student;
+    }]);

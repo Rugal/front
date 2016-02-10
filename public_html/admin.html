@@ -1,14 +1,18 @@
 <link href="assets/css/admin.css" rel="stylesheet">
 <div class="navbar-fixed">
+    <ul id="dropdown" class="dropdown-content">
+        <li><a href="#">Student</a></li>
+        <li><a href="#">Company</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Sign out</a></li>
+    </ul>
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo center"><i class="material-icons">dialpad</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="sass.html">Job</a></li>
-                <li><a href="sass.html">Company</a></li>
-                <li><a href="sass.html">Student</a></li>
-                <li><a href="badges.html">Sign out</a></li>
-            </ul>
+            <a class="brand-logo center dropdown-button" href="#" data-activates="dropdown" data-beloworigin="true" >
+                <i class="material-icons right">dialpad</i>
+            </a>
         </div>
     </nav>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>

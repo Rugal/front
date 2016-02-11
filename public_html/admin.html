@@ -54,21 +54,52 @@
 </div>
 <!-- /#wrapper -->
 
+
+<!-- Modal Structure -->
 <div id="personal-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1">Nationality</a></li>
-                    <li class="tab col s3"><a class="active" href="#test2">Citizenship</a></li>  
-                    <li class="tab col s3"><a href="#test3">Test 3</a></li>
-                    <li class="tab col s3"><a href="#test4">Test 4</a></li>
+                    <li class="tab col s3"><a  href="#nationality_row">Nationality</a></li>
+                    <li class="tab col s3"><a href="#immigration_status_row">Immigration Status</a></li>
+                    <li class="tab col s3"><a href="#gender_row">Gender</a></li>  
+                </ul>
+            </div>
+
+
+            <div id="nationality_row" class="col s12">
+            </div>
+            <div id="immigration_status_row" class="col s12">
+                <ul >
+                    <li>
+                        <input name="status" type="radio" id="is1"/><label for="is1">International Student</label>   
+                    </li>
+                    <li>
+                        <input name="status" type="radio" id="is2"/><label for="is2">Permanent resident/Canadian</label>
+                    </li>
+                    <li>
+                        <input name="status" type="radio" id="is3" checked/><label for="is3">Any</label>
+                    </li>
+                </ul>
+            </div>
+            <div id="gender_row" class="col s12">
+                <ul >
+                    <li>
+                        <input name="gender" type="radio" id="g1"/><label for="g1">Male</label>   
+                    </li>
+                    <li>
+                        <input name="gender" type="radio" id="g2"/><label for="g2">Female</label>
+                    </li>
+                    <li>
+                        <input name="gender" type="radio" id="g3" checked/><label for="g3">Any</label>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
     </div>
 </div>
 <div id="education-modal" class="modal modal-fixed-footer">
@@ -83,23 +114,29 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
     </div>
 </div>
-<!-- Modal Structure -->
 <div id="experience-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1">Work</a></li>
-                    <li class="tab col s3"><a class="active" href="#test2">Skill</a></li>  
+                    <li class="tab col s3"><a href="#test1">Test 1</a></li>
+                    <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+                    <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+                    <li class="tab col s3"><a href="#test4">Test 4</a></li>
                 </ul>
             </div>
+            <div id="test1" class="col s12">Test 1</div>
+            <div id="test2" class="col s12">Test 2</div>
+            <div id="test3" class="col s12">Test 3</div>
+            <div id="test4" class="col s12">Test 4</div>
         </div>
+
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
     </div>
 </div>
 <script>
@@ -114,6 +151,8 @@
         gutter: 0, // Spacing from edge
         belowOrigin: false, // Displays dropdown below the button
         alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    }
-    );
+    });
+    $(document).ready(function () {
+        $('ul.tabs').tabs();
+    });
 </script>

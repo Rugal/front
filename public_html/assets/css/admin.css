@@ -146,3 +146,11 @@ nav
     padding-left :0px;
     padding-right:0px;
 }
+
+
+
+#immigration_status_row , #gender_row
+{
+    padding-left: 290px; 
+    padding-top: 70px;
+}

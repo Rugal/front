@@ -133,3 +133,11 @@ nav
 {
     padding: 0px;
 }
+
+
+
+.row .col.s12
+{
+    padding-left :0px;
+    padding-right:0px;
+}

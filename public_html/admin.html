@@ -66,9 +66,18 @@
                     <li class="tab col s3"><a href="#gender_row">Gender</a></li>  
                 </ul>
             </div>
-
-
             <div id="nationality_row" class="col s12">
+                <div class="input-field col s12">
+                    <select class="center">
+                        <option value="0">Any</option>
+                        <option value="1">Canada</option>
+                        <option value="2">China</option>
+                        <option value="3">U.S.</option>
+                        <option value="4">India</option>
+                        <option value="5">Japan</option>
+                    </select>
+                    <label>Country select</label>
+                </div>
             </div>
             <div id="immigration_status_row" class="col s12">
                 <ul >
@@ -108,7 +117,8 @@
             <div class="col s12">
                 <ul class="tabs">
                     <li class="tab col s3"><a href="#test1">Degree</a></li>
-                    <li class="tab col s3"><a class="active" href="#test2">Skill</a></li>  
+                    <li class="tab col s3"><a href="#test2">Skill</a></li>  
+                    <li class="tab col s3"><a href="#test3">Misc</a></li>  
                 </ul>
             </div>
         </div>
@@ -154,5 +164,8 @@
     });
     $(document).ready(function () {
         $('ul.tabs').tabs();
+    });
+    $(document).ready(function () {
+        $('select').material_select();
     });
 </script>

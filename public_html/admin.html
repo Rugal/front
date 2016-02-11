@@ -1,8 +1,10 @@
 <link href="assets/css/admin.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <div class="navbar-fixed">
     <ul id="dropdown" class="dropdown-content">
         <li><a href="#">Student</a></li>
         <li><a href="#">Company</a></li>
+        <li><a href="#">Job</a></li>
         <li class="divider"></li>
         <li><a href="#">Sign out</a></li>
     </ul>
@@ -18,5 +20,36 @@
     <a class="btn-floating btn-large blue waves-effect waves-light">
         <i class="large material-icons">add</i>
     </a>
-</div>      
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</div>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand center">
+                <a href="#" >Student</a>
+            </li>
+            <li>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Education
+                </button>
+            </li>
+            <li>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Experience
+                </button>
+            </li>
+            <li class="divider" style="height: 20px;"></li>
+            <li>
+                <button class="btn waves-effect waves-light red" type="submit" name="action">Reset
+                    <i class="material-icons right">settings_backup_restore</i>
+                </button>
+            </li>
+            <li>
+                <button class="btn waves-effect waves-light blue" type="submit" name="action">Search
+                    <i class="material-icons right">thumb_up</i>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+</div>
+<!-- /#wrapper -->

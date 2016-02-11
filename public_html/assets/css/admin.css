@@ -126,3 +126,10 @@ nav
 {
     width: 160px;
 }
+
+
+
+.modal .modal-content
+{
+    padding: 0px;
+}

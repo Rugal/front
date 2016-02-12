@@ -154,3 +154,10 @@ nav
     padding-left: 290px; 
     padding-top: 70px;
 }
+
+
+#education-modal 
+{
+    height: 85%;
+    max-height: 90%;
+}

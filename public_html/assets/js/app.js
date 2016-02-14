@@ -12,7 +12,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
         var rest = this;
         rest.responsebody = [];
-        loadAllCountries = function ()
+        $scope.loadAllCountries = function ()
         {
             $http({method: 'GET', url: 'http://localhost:8080/country/all'})
                     .then(function (response)

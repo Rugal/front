@@ -63,22 +63,16 @@
                 <div class="col s12">
                     <ul class="tabs">
                         <li class="tab col s3"><a href="#immigration_status_row">Immigration Status</a></li>
-                        <li class="tab col s3" ><a ng-click="loadAllCountries()" href="#nationality_row" >Nationality</a></li>
+                        <li class="tab col s3" ><a ng-click="renderCountries()" href="#nationality_row" >Nationality</a></li>
                         <li class="tab col s3"><a href="#gender_row">Gender</a></li>  
                     </ul>
                 </div>
                 <div id="nationality_row" class="col s12">
-                    <div class="input-field col s12">
-                        <select class="center">
-                            <option value="0">Any</option>
-<!--                            <option value="1">Canada</option>
-                            <option value="2">China</option>
-                            <option value="3">U.S.</option>
-                            <option value="4">India</option>
-                            <option value="5">Japan</option>-->
-                        </select>
-                        <label>Country select</label>
-                    </div>
+                    <label>Country select</label>
+                    <select class="center" id="nationality_row_options" ng-model="nationality" watch material-select >
+                        <option value="0">Any</option>
+                        <option ng-repeat="country in allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                    </select>
                 </div>
                 <div id="immigration_status_row" class="col s12">
                     <ul >
@@ -177,23 +171,23 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $('.modal-trigger').leanModal();
-        });
-        $('.dropdown-button').dropdown({
-            inDuration: 300,
-            outDuration: 225,
-            constrain_width: false, // Does not change width of dropdown to that of the activator
-            hover: true, // Activate on hover
-            gutter: 0, // Spacing from edge
-            belowOrigin: false, // Displays dropdown below the button
-            alignment: 'left' // Displays dropdown with edge aligned to the left of button
-        });
-        $(document).ready(function () {
-            $('ul.tabs').tabs();
-        });
-        $(document).ready(function () {
-            $('select').material_select();
-        });
+                $(document).ready(function () {
+                    $('.modal-trigger').leanModal();
+                });
+                $('.dropdown-button').dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrain_width: false, // Does not change width of dropdown to that of the activator
+                    hover: true, // Activate on hover
+                    gutter: 0, // Spacing from edge
+                    belowOrigin: false, // Displays dropdown below the button
+                    alignment: 'left' // Displays dropdown with edge aligned to the left of button
+                });
+                $(document).ready(function () {
+                    $('ul.tabs').tabs();
+                });
+                $(document).ready(function () {
+                    $('select').material_select();
+                });
     </script>
 </div>

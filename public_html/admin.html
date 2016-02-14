@@ -21,7 +21,6 @@
             <i class="large material-icons">add</i>
         </a>
     </div>
-
     <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -69,34 +68,34 @@
                 </div>
                 <div id="nationality_row" class="col s12">
                     <label>Country select</label>
-                    <select class="center" id="nationality_row_options" ng-model="nationality" watch material-select >
+                    <select class="center" id="nationality_row_options" ng-model="predicates.nationality" watch material-select >
                         <option value="0">Any</option>
-                        <option ng-repeat="country in allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
                     </select>
                 </div>
-                <div id="immigration_status_row" class="col s12">
+                <div id="immigration_status_row" class="col s12" >
                     <ul >
                         <li>
-                            <input name="status" type="radio" id="is1"/><label for="is1">International Student</label>   
+                            <input name="status" type="radio" id="is1" ng-model="predicates.status" value="is"/><label for="is1">International Student</label>   
                         </li>
                         <li>
-                            <input name="status" type="radio" id="is2"/><label for="is2">Permanent resident/Canadian</label>
+                            <input name="status" type="radio" id="is2" ng-model="predicates.status" value="pr"/><label for="is2">Permanent resident/Canadian</label>
                         </li>
                         <li>
-                            <input name="status" type="radio" id="is3" checked/><label for="is3">Any</label>
+                            <input name="status" type="radio" id="is3" ng-model="predicates.status" value="0" checked/><label for="is3">Any</label>
                         </li>
                     </ul>
                 </div>
                 <div id="gender_row" class="col s12">
                     <ul >
                         <li>
-                            <input name="gender" type="radio" id="g1"/><label for="g1">Male</label>   
+                            <input name="gender" type="radio" ng-model="predicates.gender" value="m" id="g1"/><label for="g1">Male</label>   
                         </li>
                         <li>
-                            <input name="gender" type="radio" id="g2"/><label for="g2">Female</label>
+                            <input name="gender" type="radio" ng-model="predicates.gender" value="f" id="g2"/><label for="g2">Female</label>
                         </li>
                         <li>
-                            <input name="gender" type="radio" id="g3" checked/><label for="g3">Any</label>
+                            <input name="gender" type="radio" ng-model="predicates.gender" value="0" id="g3" checked/><label for="g3">Any</label>
                         </li>
                     </ul>
                 </div>

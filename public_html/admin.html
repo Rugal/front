@@ -1,197 +1,199 @@
 <link href="assets/css/admin.css" rel="stylesheet">
-<div class="navbar-fixed">
-    <ul id="dropdown" class="dropdown-content">
-        <li><a href="#">Student</a></li>
-        <li><a href="#">Company</a></li>
-        <li><a href="#">Job</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Sign out</a></li>
-    </ul>
-    <nav>
-        <div class="nav-wrapper">
-            <a class="brand-logo center dropdown-button" href="#" data-activates="dropdown" data-beloworigin="true">
-                <i class="material-icons right">dialpad</i>
-            </a>
-        </div>
-    </nav>
-</div>
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large blue waves-effect waves-light">
-        <i class="large material-icons">add</i>
-    </a>
-</div>
-
-<div id="wrapper">
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a class="center">Student</a>
-            </li>
-            <li>
-                <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light">Personal</button>
-            </li>
-            <li>
-                <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light">Education</button>
-            </li>
-            <li>
-                <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light">Experience</button>
-            </li>
-            <li class="divider" style="height: 15px;"></li>
-            <li>
-                <button class="btn waves-effect waves-light red" type="submit" name="action">Reset
-                    <i class="material-icons right">settings_backup_restore</i>
-                </button>
-            </li>
-            <li>
-                <button class="btn waves-effect waves-light blue" type="submit" name="action">Search
-                    <i class="material-icons right">thumb_up</i>
-                </button>
-            </li>
+<div ng-controller="adminController as ac">
+    <div class="navbar-fixed">
+        <ul id="dropdown" class="dropdown-content">
+            <li><a href="#">Student</a></li>
+            <li><a href="#">Company</a></li>
+            <li><a href="#">Job</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Sign out</a></li>
         </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <a class="brand-logo center dropdown-button" href="#" data-activates="dropdown" data-beloworigin="true">
+                    <i class="material-icons right">dialpad</i>
+                </a>
+            </div>
+        </nav>
     </div>
-    <!-- /#sidebar-wrapper -->
-</div>
-<!-- /#wrapper -->
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large blue waves-effect waves-light">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a class="center">Student</a>
+                </li>
+                <li>
+                    <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light">Personal</button>
+                </li>
+                <li>
+                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light">Education</button>
+                </li>
+                <li>
+                    <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light">Experience</button>
+                </li>
+                <li class="divider" style="height: 15px;"></li>
+                <li>
+                    <button class="btn waves-effect waves-light red" type="submit" name="action">Reset
+                        <i class="material-icons right">settings_backup_restore</i>
+                    </button>
+                </li>
+                <li>
+                    <button class="btn waves-effect waves-light blue" type="submit" name="action">Search
+                        <i class="material-icons right">thumb_up</i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
 
-<!-- Modal Structure -->
-<div id="personal-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a  href="#nationality_row">Nationality</a></li>
-                    <li class="tab col s3"><a href="#immigration_status_row">Immigration Status</a></li>
-                    <li class="tab col s3"><a href="#gender_row">Gender</a></li>  
-                </ul>
-            </div>
-            <div id="nationality_row" class="col s12">
-                <div class="input-field col s12">
-                    <select class="center">
-                        <option value="0">Any</option>
-                        <option value="1">Canada</option>
-                        <option value="2">China</option>
-                        <option value="3">U.S.</option>
-                        <option value="4">India</option>
-                        <option value="5">Japan</option>
-                    </select>
-                    <label>Country select</label>
+    <!-- Modal Structure -->
+    <div id="personal-modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#immigration_status_row">Immigration Status</a></li>
+                        <li class="tab col s3" ><a ng-click="loadAllCountries()" href="#nationality_row" >Nationality</a></li>
+                        <li class="tab col s3"><a href="#gender_row">Gender</a></li>  
+                    </ul>
                 </div>
-            </div>
-            <div id="immigration_status_row" class="col s12">
-                <ul >
-                    <li>
-                        <input name="status" type="radio" id="is1"/><label for="is1">International Student</label>   
-                    </li>
-                    <li>
-                        <input name="status" type="radio" id="is2"/><label for="is2">Permanent resident/Canadian</label>
-                    </li>
-                    <li>
-                        <input name="status" type="radio" id="is3" checked/><label for="is3">Any</label>
-                    </li>
-                </ul>
-            </div>
-            <div id="gender_row" class="col s12">
-                <ul >
-                    <li>
-                        <input name="gender" type="radio" id="g1"/><label for="g1">Male</label>   
-                    </li>
-                    <li>
-                        <input name="gender" type="radio" id="g2"/><label for="g2">Female</label>
-                    </li>
-                    <li>
-                        <input name="gender" type="radio" id="g3" checked/><label for="g3">Any</label>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
-    </div>
-</div>
-<div id="education-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1">Degree</a></li>
-                    <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
-                    <li class="tab col s3"><a href="#test3">Misc</a></li>  
-                </ul>
-            </div>
-            <div id="skill_row" class="input-field col s12">
-                <div class="input-field col s12">
-                    <select multiple>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>Techniques</label>
+                <div id="nationality_row" class="col s12">
+                    <div class="input-field col s12">
+                        <select class="center">
+                            <option value="0">Any</option>
+<!--                            <option value="1">Canada</option>
+                            <option value="2">China</option>
+                            <option value="3">U.S.</option>
+                            <option value="4">India</option>
+                            <option value="5">Japan</option>-->
+                        </select>
+                        <label>Country select</label>
+                    </div>
                 </div>
-                <div class="input-field col s12">
-                    <select multiple>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>Operating System</label>
+                <div id="immigration_status_row" class="col s12">
+                    <ul >
+                        <li>
+                            <input name="status" type="radio" id="is1"/><label for="is1">International Student</label>   
+                        </li>
+                        <li>
+                            <input name="status" type="radio" id="is2"/><label for="is2">Permanent resident/Canadian</label>
+                        </li>
+                        <li>
+                            <input name="status" type="radio" id="is3" checked/><label for="is3">Any</label>
+                        </li>
+                    </ul>
                 </div>
-                <div class="input-field col s12">
-                    <select multiple>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                    <label>CMS</label>
+                <div id="gender_row" class="col s12">
+                    <ul >
+                        <li>
+                            <input name="gender" type="radio" id="g1"/><label for="g1">Male</label>   
+                        </li>
+                        <li>
+                            <input name="gender" type="radio" id="g2"/><label for="g2">Female</label>
+                        </li>
+                        <li>
+                            <input name="gender" type="radio" id="g3" checked/><label for="g3">Any</label>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
-    </div>
-</div>
-<div id="experience-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1">Test 1</a></li>
-                    <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-                    <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-                    <li class="tab col s3"><a href="#test4">Test 4</a></li>
-                </ul>
-            </div>
-            <div id="test1" class="col s12">Test 1</div>
-            <div id="test2" class="col s12">Test 2</div>
-            <div id="test3" class="col s12">Test 3</div>
-            <div id="test4" class="col s12">Test 4</div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
         </div>
+    </div>
+    <div id="education-modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#test1">Degree</a></li>
+                        <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
+                        <li class="tab col s3"><a href="#test3">Misc</a></li>  
+                    </ul>
+                </div>
+                <div id="skill_row" class="input-field col s12">
+                    <div class="input-field col s12">
+                        <select multiple>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Techniques</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <select multiple>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Operating System</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <select multiple>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>CMS</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        </div>
+    </div>
+    <div id="experience-modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#test1">Test 1</a></li>
+                        <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+                        <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+                        <li class="tab col s3"><a href="#test4">Test 4</a></li>
+                    </ul>
+                </div>
+                <div id="test1" class="col s12">Test 1</div>
+                <div id="test2" class="col s12">Test 2</div>
+                <div id="test3" class="col s12">Test 3</div>
+                <div id="test4" class="col s12">Test 4</div>
+            </div>
 
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        </div>
     </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
-    </div>
+    <script>
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal();
+        });
+        $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        });
+        $(document).ready(function () {
+            $('ul.tabs').tabs();
+        });
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+    </script>
 </div>
-<script>
-    $(document).ready(function () {
-        $('.modal-trigger').leanModal();
-    });
-    $('.dropdown-button').dropdown({
-        inDuration: 300,
-        outDuration: 225,
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: false, // Displays dropdown below the button
-        alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    });
-    $(document).ready(function () {
-        $('ul.tabs').tabs();
-    });
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-</script>

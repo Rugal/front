@@ -8,15 +8,23 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                 {
                     allCountries: []
                 };
-        $scope.predicates =
-                {
-                    nationality: 0,
-                    gender: '0',
-                    status: '0'
-                };
+        $scope.predicates = null;
+        $scope.resetPredicates = function ()
+        {
+            default_predicates =
+                    {
+                        nationality: 0,
+                        gender: '0',
+                        status: '0'
+                    };
+            $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
+        };
+        $scope.resetPredicates();
+
+
         $scope.loadAllCountries = function ()
         {
-            if ($scope.preload.allCountries.length === 0)
+            if (0 === $scope.preload.allCountries.length)
             {
                 $http({method: 'GET', url: 'http://localhost:8080/country/all'})
                         .then(function (response)

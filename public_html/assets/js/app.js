@@ -19,7 +19,9 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                         nationality: 0,
                         gender: '0',
                         status: '0',
-                        skills: [null, [], [], []]
+                        skills: [null, [], [], []],
+                        degrees: [0, 0, 0],
+                        work: 0
                     };
             $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
         };

@@ -32,7 +32,7 @@
                     <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();">Personal</button>
                 </li>
                 <li>
-                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllSkills();">Education</button>
+                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();loadAllSkills();">Education</button>
                 </li>
                 <li>
                     <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light">Experience</button>
@@ -53,7 +53,6 @@
         <!-- /#sidebar-wrapper -->
     </div>
     <!-- /#wrapper -->
-
 
     <!-- Modal Structure -->
     <div id="personal-modal" class="modal modal-fixed-footer">
@@ -110,10 +109,33 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s3"><a href="#test1">Degree</a></li>
+                        <li class="tab col s3"><a href="#degree_row">Degree</a></li>
                         <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
                         <li class="tab col s3"><a href="#test3">Misc</a></li>  
                     </ul>
+                </div>
+                <div id="degree_row" class="input-field col s12">
+                    <div class="input-field col s12">
+                        <label>Country of Bachelor Degree</label>
+                        <select class="center" ng-model="predicates.degrees[0]" watch material-select >
+                            <option value="0">Any</option>
+                            <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12">
+                        <label>Country of Bachelor Degree</label>
+                        <select class="center" ng-model="predicates.degrees[0]" watch material-select >
+                            <option value="0">Any</option>
+                            <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12">
+                        <label>Country of Bachelor Degree</label>
+                        <select class="center" ng-model="predicates.degrees[0]" watch material-select >
+                            <option value="0">Any</option>
+                            <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="skill_row" class="input-field col s12">
                     <div class="input-field col s12">
@@ -140,16 +162,26 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s3"><a href="#test1">Test 1</a></li>
-                        <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-                        <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-                        <li class="tab col s3"><a href="#test4">Test 4</a></li>
+                        <li class="tab col s3"><a id="work-experience-tab" class="active" href="#work-experience-row">Work Experience</a></li>
+                        <li id="company-country-tab" class="tab col s3 disabled"><a href="#company-country-row">Country</a></li>
+                        <li id="time-tab" class="tab col s3 disabled"><a href="#time-row">Time</a></li>
                     </ul>
                 </div>
-                <div id="test1" class="col s12">Test 1</div>
-                <div id="test2" class="col s12">Test 2</div>
-                <div id="test3" class="col s12">Test 3</div>
-                <div id="test4" class="col s12">Test 4</div>
+                <div id="work-experience-row" class="col s12">
+                    <ul>
+                        <li>
+                            <input id="w1" name="work" type="radio" ng-model="predicates.work" value="0"/><label for="w1">Any</label>   
+                        </li>
+                        <li>
+                            <input id="w2" name="work" type="radio"  ng-model="predicates.work" value="1"/><label for="w2">Employed</label>
+                        </li>
+                        <li>
+                            <input id="w3" name="work" type="radio" ng-model="predicates.work" value="2"/><label for="w3">Unemployed</label>
+                        </li>
+                    </ul>
+                </div>
+                <div id="company-country-row" class="col s12">Test 2</div>
+                <div id="time-row" class="col s12">Test 3</div>
             </div>
 
         </div>
@@ -175,6 +207,24 @@
                 });
                 $(document).ready(function () {
                     $('select').material_select();
+                });
+                $(document).ready(function () {
+                    $("#w1").click(function () {
+                        $("#company-country-row").addClass('disabled');
+                        $("#time-tab").addClass('disabled');
+                    });
+                });
+                $(document).ready(function () {
+                    $("#w3").click(function () {
+                        $("#company-country-tab").addClass('disabled');
+                        $("#time-tab").removeClass('disabled');
+                    });
+                });
+                $(document).ready(function () {
+                    $("#w2").click(function () {
+                        $("#company-country-tab").removeClass('disabled');
+                        $("#time-tab").removeClass('disabled');
+                    });
                 });
     </script>
 </div>

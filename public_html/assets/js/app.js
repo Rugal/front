@@ -8,7 +8,6 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         $scope.preload =
                 {
                     allCountries: [],
-                    skillTypes: [0, 1, 2, 3],
                     skills: []
                 };
         $scope.predicates = null;
@@ -17,13 +16,15 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
             default_predicates =
                     {
                         nationality: 0,
-                        gender: '0',
-                        status: '0',
+                        gender: 0,
+                        status: 0,
                         skills: [null, [], [], []],
                         degrees: [0, 0, 0],
                         work: 0
                     };
             $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
+            angular.element('#work-experience-tab a').trigger('click');
+            angular.element('#w1').trigger('click');
         };
         $scope.resetPredicates();
         $scope.loadAllSkills = function ()
@@ -39,9 +40,9 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                             $scope.preload.skills[stid] = response.data.data;
                         }, function (response) {});
             };
-            for (i = 1; i < $scope.preload.skillTypes.length; i++)
+            for (i = 1; i <= 3; i++)
             {
-                loadSkills($scope.preload.skillTypes[i]);
+                loadSkills(i);
             }
         };
         $scope.loadAllCountries = function ()

@@ -75,10 +75,10 @@
                 <div id="immigration_status_row" class="col s12" >
                     <ul >
                         <li>
-                            <input name="status" type="radio" id="is1" ng-model="predicates.status" value="is"/><label for="is1">International Student</label>   
+                            <input name="status" type="radio" id="is1" ng-model="predicates.status" value="-1"/><label for="is1">International Student</label>   
                         </li>
                         <li>
-                            <input name="status" type="radio" id="is2" ng-model="predicates.status" value="pr"/><label for="is2">Permanent resident/Canadian</label>
+                            <input name="status" type="radio" id="is2" ng-model="predicates.status" value="1"/><label for="is2">Permanent resident/Canadian</label>
                         </li>
                         <li>
                             <input name="status" type="radio" id="is3" ng-model="predicates.status" value="0" checked/><label for="is3">Any</label>
@@ -88,10 +88,10 @@
                 <div id="gender_row" class="col s12">
                     <ul >
                         <li>
-                            <input name="gender" type="radio" ng-model="predicates.gender" value="m" id="g1"/><label for="g1">Male</label>   
+                            <input name="gender" type="radio" ng-model="predicates.gender" value="1" id="g1"/><label for="g1">Male</label>   
                         </li>
                         <li>
-                            <input name="gender" type="radio" ng-model="predicates.gender" value="f" id="g2"/><label for="g2">Female</label>
+                            <input name="gender" type="radio" ng-model="predicates.gender" value="-1" id="g2"/><label for="g2">Female</label>
                         </li>
                         <li>
                             <input name="gender" type="radio" ng-model="predicates.gender" value="0" id="g3" checked/><label for="g3">Any</label>
@@ -111,7 +111,7 @@
                     <ul class="tabs">
                         <li class="tab col s3"><a href="#degree_row">Degree</a></li>
                         <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
-                        <li class="tab col s3"><a href="#test3">Misc</a></li>  
+                        <li class="tab col s3"><a href="#certificate_row">Certificate</a></li>  
                     </ul>
                 </div>
                 <div id="degree_row" class="input-field col s12">
@@ -123,14 +123,14 @@
                         </select>
                     </div>
                     <div class="input-field col s12">
-                        <label>Country of Bachelor Degree</label>
+                        <label>Country of Master Degree</label>
                         <select class="center" ng-model="predicates.degrees[0]" watch material-select >
                             <option value="0">Any</option>
                             <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
                         </select>
                     </div>
                     <div class="input-field col s12">
-                        <label>Country of Bachelor Degree</label>
+                        <label>Country of PHD Degree</label>
                         <select class="center" ng-model="predicates.degrees[0]" watch material-select >
                             <option value="0">Any</option>
                             <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
@@ -139,17 +139,19 @@
                 </div>
                 <div id="skill_row" class="input-field col s12">
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[1] track by s.sid" ng-model="predicates.skills[1]" multiple  material-select watch></select>
+                        <select  ng-options="s.name for s in preload.skills[1] track by s.sid;" ng-model="predicates.skills[1]" multiple  material-select watch></select>
                         <label>Techniques</label>
                     </div>
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[2] track by s.sid" ng-model="predicates.skills[2]" multiple  material-select watch></select>
+                        <select  ng-options="s.name for s in preload.skills[2] track by s.sid;" ng-model="predicates.skills[2]" multiple  material-select watch></select>
                         <label>CMS</label>
                     </div>
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[3] track by s.sid" ng-model="predicates.skills[3]" multiple  material-select watch></select>
+                        <select  ng-options="s.name for s in preload.skills[3] track by s.sid;" ng-model="predicates.skills[3]" multiple  material-select watch></select>
                         <label>Operating System</label>
                     </div>
+                </div>
+                <div id="certificate_row" class="input-field col s12">
                 </div>
             </div>
         </div>
@@ -162,7 +164,7 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s3"><a id="work-experience-tab" class="active" href="#work-experience-row">Work Experience</a></li>
+                        <li id="work-experience-tab" class="tab col s3"><a  class="active" href="#work-experience-row">Work Experience</a></li>
                         <li id="company-country-tab" class="tab col s3 disabled"><a href="#company-country-row">Country</a></li>
                         <li id="time-tab" class="tab col s3 disabled"><a href="#time-row">Time</a></li>
                     </ul>
@@ -210,7 +212,7 @@
                 });
                 $(document).ready(function () {
                     $("#w1").click(function () {
-                        $("#company-country-row").addClass('disabled');
+                        $("#company-country-tab").addClass('disabled');
                         $("#time-tab").addClass('disabled');
                     });
                 });

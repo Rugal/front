@@ -29,13 +29,13 @@
                     <a class="center">Student</a>
                 </li>
                 <li>
-                    <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();">Personal</button>
+                    <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light" >Personal</button>
                 </li>
                 <li>
-                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();loadAllSkills();">Education</button>
+                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllSkills();">Education</button>
                 </li>
                 <li>
-                    <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light">Experience</button>
+                    <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light" >Experience</button>
                 </li>
                 <li class="divider" style="height: 15px;"></li>
                 <li>
@@ -67,7 +67,7 @@
                 </div>
                 <div id="nationality_row" class="col s12">
                     <label>Country select</label>
-                    <select class="center" id="nationality_row_options" ng-model="predicates.nationality" watch material-select >
+                    <select class="center" id="nationality_row_options" ng-model="predicates.personal.nationality" watch material-select >
                         <option value="0">Any</option>
                         <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
                     </select>
@@ -75,26 +75,26 @@
                 <div id="immigration_status_row" class="col s12" >
                     <ul >
                         <li>
-                            <input name="status" type="radio" id="is1" ng-model="predicates.status" value="-1"/><label for="is1">International Student</label>   
+                            <input name="status" type="radio" id="is1" ng-model="predicates.personal.status" value="-1"/><label for="is1">International Student</label>   
                         </li>
                         <li>
-                            <input name="status" type="radio" id="is2" ng-model="predicates.status" value="1"/><label for="is2">Permanent resident/Canadian</label>
+                            <input name="status" type="radio" id="is2" ng-model="predicates.personal.status" value="1"/><label for="is2">Permanent resident/Canadian</label>
                         </li>
                         <li>
-                            <input name="status" type="radio" id="is3" ng-model="predicates.status" value="0" checked/><label for="is3">Any</label>
+                            <input name="status" type="radio" id="is3" ng-model="predicates.personal.status" value="0" checked/><label for="is3">Any</label>
                         </li>
                     </ul>
                 </div>
                 <div id="gender_row" class="col s12">
                     <ul >
                         <li>
-                            <input name="gender" type="radio" ng-model="predicates.gender" value="1" id="g1"/><label for="g1">Male</label>   
+                            <input name="gender" type="radio" ng-model="predicates.personal.gender" value="1" id="g1"/><label for="g1">Male</label>   
                         </li>
                         <li>
-                            <input name="gender" type="radio" ng-model="predicates.gender" value="-1" id="g2"/><label for="g2">Female</label>
+                            <input name="gender" type="radio" ng-model="predicates.personal.gender" value="-1" id="g2"/><label for="g2">Female</label>
                         </li>
                         <li>
-                            <input name="gender" type="radio" ng-model="predicates.gender" value="0" id="g3" checked/><label for="g3">Any</label>
+                            <input name="gender" type="radio" ng-model="predicates.personal.gender" value="0" id="g3" checked/><label for="g3">Any</label>
                         </li>
                     </ul>
                 </div>
@@ -117,21 +117,21 @@
                 <div id="degree_row" class="input-field col s12">
                     <div class="input-field col s12">
                         <label>Country of Bachelor Degree</label>
-                        <select class="center" ng-model="predicates.degrees[0]" watch material-select >
+                        <select class="center" ng-model="predicates.education.degrees[0]" watch material-select >
                             <option value="0">Any</option>
                             <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
                         </select>
                     </div>
                     <div class="input-field col s12">
                         <label>Country of Master Degree</label>
-                        <select class="center" ng-model="predicates.degrees[0]" watch material-select >
+                        <select class="center" ng-model="predicates.education.degrees[1]" watch material-select >
                             <option value="0">Any</option>
                             <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
                         </select>
                     </div>
                     <div class="input-field col s12">
                         <label>Country of PHD Degree</label>
-                        <select class="center" ng-model="predicates.degrees[0]" watch material-select >
+                        <select class="center" ng-model="predicates.education.degrees[2]" watch material-select >
                             <option value="0">Any</option>
                             <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
                         </select>
@@ -139,15 +139,15 @@
                 </div>
                 <div id="skill_row" class="input-field col s12">
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[1] track by s.sid;" ng-model="predicates.skills[1]" multiple  material-select watch></select>
+                        <select  ng-options="s.name for s in preload.skills[1] track by s.sid;" ng-model="predicates.education.skills[1]" multiple  material-select watch></select>
                         <label>Techniques</label>
                     </div>
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[2] track by s.sid;" ng-model="predicates.skills[2]" multiple  material-select watch></select>
+                        <select  ng-options="s.name for s in preload.skills[2] track by s.sid;" ng-model="predicates.education.skills[2]" multiple  material-select watch></select>
                         <label>CMS</label>
                     </div>
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[3] track by s.sid;" ng-model="predicates.skills[3]" multiple  material-select watch></select>
+                        <select  ng-options="s.name for s in preload.skills[3] track by s.sid;" ng-model="predicates.education.skills[3]" multiple  material-select watch></select>
                         <label>Operating System</label>
                     </div>
                 </div>
@@ -172,18 +172,29 @@
                 <div id="work-experience-row" class="col s12">
                     <ul>
                         <li>
-                            <input id="w1" name="work" type="radio" ng-model="predicates.work" value="0"/><label for="w1">Any</label>   
+                            <input id="w1" name="work" type="radio" ng-model="predicates.experience.work" value="0"/><label for="w1">Any</label>   
                         </li>
                         <li>
-                            <input id="w2" name="work" type="radio"  ng-model="predicates.work" value="1"/><label for="w2">Employed</label>
+                            <input id="w2" name="work" type="radio"  ng-model="predicates.experience.work" value="1"/><label for="w2">Employed</label>
                         </li>
                         <li>
-                            <input id="w3" name="work" type="radio" ng-model="predicates.work" value="2"/><label for="w3">Unemployed</label>
+                            <input id="w3" name="work" type="radio" ng-model="predicates.experience.work" value="2"/><label for="w3">Unemployed</label>
                         </li>
                     </ul>
                 </div>
-                <div id="company-country-row" class="col s12">Test 2</div>
-                <div id="time-row" class="col s12">Test 3</div>
+                <div id="company-country-row" class="col s12">
+                    <label>Country select</label>
+                    <select class="center"  ng-model="predicates.experience.companyCountry" watch material-select >
+                        <option value="0">Any</option>
+                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                    </select>
+                </div>
+                <div id="time-row" class="col s12">
+                    <label>Since</label>
+                    <p class="range-field">
+                        <input type="range" ng-model="predicates.experience.since" min="1990" max="2016" />
+                    </p>
+                </div>
             </div>
 
         </div>
@@ -192,41 +203,41 @@
         </div>
     </div>
     <script>
-                $(document).ready(function () {
-                    $('.modal-trigger').leanModal();
-                });
-                $('.dropdown-button').dropdown({
-                    inDuration: 300,
-                    outDuration: 225,
-                    constrain_width: false, // Does not change width of dropdown to that of the activator
-                    hover: true, // Activate on hover
-                    gutter: 0, // Spacing from edge
-                    belowOrigin: false, // Displays dropdown below the button
-                    alignment: 'left' // Displays dropdown with edge aligned to the left of button
-                });
-                $(document).ready(function () {
-                    $('ul.tabs').tabs();
-                });
-                $(document).ready(function () {
-                    $('select').material_select();
-                });
-                $(document).ready(function () {
-                    $("#w1").click(function () {
-                        $("#company-country-tab").addClass('disabled');
-                        $("#time-tab").addClass('disabled');
-                    });
-                });
-                $(document).ready(function () {
-                    $("#w3").click(function () {
-                        $("#company-country-tab").addClass('disabled');
-                        $("#time-tab").removeClass('disabled');
-                    });
-                });
-                $(document).ready(function () {
-                    $("#w2").click(function () {
-                        $("#company-country-tab").removeClass('disabled');
-                        $("#time-tab").removeClass('disabled');
-                    });
-                });
+        $(document).ready(function () {
+        $('.modal-trigger').leanModal();
+        });
+        $('.dropdown-button').dropdown({
+        inDuration: 300,
+                outDuration: 225,
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+                hover: true, // Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: false, // Displays dropdown below the button
+                alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        });
+        $(document).ready(function () {
+        $('ul.tabs').tabs();
+        });
+        $(document).ready(function () {
+        $('select').material_select();
+        });
+        $(document).ready(function () {
+        $("#w1").click(function () {
+        $("#company-country-tab").addClass('disabled');
+        $("#time-tab").addClass('disabled');
+        });
+        });
+        $(document).ready(function () {
+        $("#w3").click(function () {
+        $("#company-country-tab").addClass('disabled');
+        $("#time-tab").removeClass('disabled');
+        });
+        });
+        $(document).ready(function () {
+        $("#w2").click(function () {
+        $("#company-country-tab").removeClass('disabled');
+        $("#time-tab").removeClass('disabled');
+        });
+        });
     </script>
 </div>

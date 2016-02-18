@@ -15,12 +15,23 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         {
             default_predicates =
                     {
-                        nationality: 0,
-                        gender: 0,
-                        status: 0,
-                        skills: [null, [], [], []],
-                        degrees: [0, 0, 0],
-                        work: 0
+                        personal:
+                                {
+                                    nationality: 0,
+                                    gender: 0,
+                                    status: 0
+                                },
+                        education:
+                                {
+                                    skills: [null, [], [], []],
+                                    degrees: [0, 0, 0]
+                                },
+                        experience:
+                                {
+                                    work: 0,
+                                    companyCountry: 0,
+                                    since: 0
+                                }
                     };
             $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
             angular.element('#work-experience-tab a').trigger('click');
@@ -56,6 +67,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                         }, function (response) {});
             }
         };
+        $scope.loadAllCountries();
     }]);
 
 

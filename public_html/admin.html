@@ -32,7 +32,7 @@
                     <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light" >Personal</button>
                 </li>
                 <li>
-                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllSkills();">Education</button>
+                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCertifications();loadAllSkills();">Education</button>
                 </li>
                 <li>
                     <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light" >Experience</button>
@@ -152,6 +152,8 @@
                     </div>
                 </div>
                 <div id="certificate_row" class="input-field col s12">
+                    <select  ng-options="m.name for m in preload.certifications track by m.mid;" ng-model="predicates.education.certifications" multiple  material-select watch></select>
+                    <label>Certification owned</label>
                 </div>
             </div>
         </div>
@@ -203,41 +205,41 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-        $('.modal-trigger').leanModal();
-        });
-        $('.dropdown-button').dropdown({
-        inDuration: 300,
-                outDuration: 225,
-                constrain_width: false, // Does not change width of dropdown to that of the activator
-                hover: true, // Activate on hover
-                gutter: 0, // Spacing from edge
-                belowOrigin: false, // Displays dropdown below the button
-                alignment: 'left' // Displays dropdown with edge aligned to the left of button
-        });
-        $(document).ready(function () {
-        $('ul.tabs').tabs();
-        });
-        $(document).ready(function () {
-        $('select').material_select();
-        });
-        $(document).ready(function () {
-        $("#w1").click(function () {
-        $("#company-country-tab").addClass('disabled');
-        $("#time-tab").addClass('disabled');
-        });
-        });
-        $(document).ready(function () {
-        $("#w3").click(function () {
-        $("#company-country-tab").addClass('disabled');
-        $("#time-tab").removeClass('disabled');
-        });
-        });
-        $(document).ready(function () {
-        $("#w2").click(function () {
-        $("#company-country-tab").removeClass('disabled');
-        $("#time-tab").removeClass('disabled');
-        });
-        });
+                $(document).ready(function () {
+                    $('.modal-trigger').leanModal();
+                });
+                $('.dropdown-button').dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrain_width: false, // Does not change width of dropdown to that of the activator
+                    hover: true, // Activate on hover
+                    gutter: 0, // Spacing from edge
+                    belowOrigin: false, // Displays dropdown below the button
+                    alignment: 'left' // Displays dropdown with edge aligned to the left of button
+                });
+                $(document).ready(function () {
+                    $('ul.tabs').tabs();
+                });
+                $(document).ready(function () {
+                    $('select').material_select();
+                });
+                $(document).ready(function () {
+                    $("#w1").click(function () {
+                        $("#company-country-tab").addClass('disabled');
+                        $("#time-tab").addClass('disabled');
+                    });
+                });
+                $(document).ready(function () {
+                    $("#w3").click(function () {
+                        $("#company-country-tab").addClass('disabled');
+                        $("#time-tab").removeClass('disabled');
+                    });
+                });
+                $(document).ready(function () {
+                    $("#w2").click(function () {
+                        $("#company-country-tab").removeClass('disabled');
+                        $("#time-tab").removeClass('disabled');
+                    });
+                });
     </script>
 </div>

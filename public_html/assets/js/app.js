@@ -7,6 +7,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         $scope.data = null;
         $scope.preload =
                 {
+                    certifications: [],
                     allCountries: [],
                     skills: []
                 };
@@ -24,7 +25,8 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                         education:
                                 {
                                     skills: [null, [], [], []],
-                                    degrees: [0, 0, 0]
+                                    degrees: [0, 0, 0],
+                                    certifications: []
                                 },
                         experience:
                                 {
@@ -54,6 +56,17 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
             for (i = 1; i <= 3; i++)
             {
                 loadSkills(i);
+            }
+        };
+        $scope.loadAllCertifications = function ()
+        {
+            if (0 === $scope.preload.certifications.length)
+            {
+                $http({method: 'GET', url: 'http://localhost:8080/major/certification'})
+                        .then(function (response)
+                        {
+                            $scope.preload.certifications = response.data.data;
+                        }, function (response) {});
             }
         };
         $scope.loadAllCountries = function ()

@@ -24,7 +24,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                                 },
                         education:
                                 {
-                                    skills: [null, [], [], []],
+                                    skills: [[], [], []],
                                     degrees: [0, 0, 0],
                                     certifications: []
                                 },
@@ -50,7 +50,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
             {
                 $http({method: 'GET', url: 'http://localhost:8080/skilltype/' + stid + '/skill'})
                         .then(function (response) {
-                            $scope.preload.skills[stid] = response.data.data;
+                            $scope.preload.skills[stid - 1] = response.data.data;
                         }, function (response) {});
             };
             for (i = 1; i <= 3; i++)
@@ -87,6 +87,11 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
         $scope.print = function ()
         {
-            console.log($scope.predicates);
+            console.log(JSON.stringify($scope.predicates));
+        };
+        $scope.submit = function ()
+        {
+            $http({method: 'POST', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
+                    .then(function (response) {}, function (response) {});
         };
     }]);

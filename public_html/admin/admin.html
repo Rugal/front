@@ -2,9 +2,9 @@
 <div ng-controller="adminController">
     <div class="navbar-fixed">
         <ul id="dropdown" class="dropdown-content">
-            <li><a href="#" ng-click="admin = adminPages[0]">Student</a></li>
-            <li><a href="#" ng-click="admin = adminPages[1]">Company</a></li>
-            <li><a href="#" ng-click="admin = adminPages[2]">Job</a></li>
+            <li><a href="#" ng-click="adminCurrent = adminPages[0]">Student</a></li>
+            <li><a href="#" ng-click="adminCurrent = adminPages[1]">Company</a></li>
+            <li><a href="#" ng-click="adminCurrent = adminPages[2]">Job</a></li>
             <li class="divider"></li>
             <li><a href="#">Sign out</a></li>
         </ul>
@@ -16,7 +16,7 @@
             </div>
         </nav>
     </div>
-    <div  ng-include="admin"></div>
+    <div  ng-include="adminCurrent"></div>
 
     <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large blue waves-effect waves-light">
@@ -24,7 +24,7 @@
         </a>
         <ul>
             <li>
-                <button data-target="add-student-modal"  class="modal-trigger btn-floating red">
+                <button id="add-more" data-target="add-student-modal"  class="modal-trigger btn-floating red">
                     <i class="material-icons">person_pin</i>
                 </button>
             </li> <!--student-->
@@ -35,11 +35,19 @@
         </ul>
     </div>
 </div>
-
-
-
 <div id="add-student-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3 active"><a href="#degree_row">Basic</a></li>
+                    <li class="tab col s3"><a href="#degree_row">Degree</a></li>
+                    <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
+                    <li class="tab col s3"><a href="#certificate_row">Certificate</a></li>
+                    <li class="tab col s3"><a href="#certificate_row">Experience</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
@@ -48,6 +56,16 @@
 
 <script>
     $(document).ready(function () {
-        $('.modal-trigger').leanModal();
+        $('#add-more').leanModal();
     });
 </script>
+
+<!--{
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            complete: function () {
+                $('.lean-overlay').remove();
+            } // Callback for Modal close
+        }-->

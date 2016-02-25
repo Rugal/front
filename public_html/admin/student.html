@@ -1,4 +1,4 @@
- <div id="wrapper">
+<div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
@@ -181,38 +181,4 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
     </div>
 </div>
-<script>
-    $('.dropdown-button').dropdown({
-        inDuration: 300,
-        outDuration: 225,
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: false, // Displays dropdown below the button
-        alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    });
-    $(document).ready(function () {
-        $('ul.tabs').tabs();
-    });
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-    $(document).ready(function () {
-        $("#w1").click(function () {
-            $("#company-country-tab").addClass('disabled');
-            $("#time-tab").addClass('disabled');
-        });
-    });
-    $(document).ready(function () {
-        $("#w3").click(function () {
-            $("#company-country-tab").addClass('disabled');
-            $("#time-tab").removeClass('disabled');
-        });
-    });
-    $(document).ready(function () {
-        $("#w2").click(function () {
-            $("#company-country-tab").removeClass('disabled');
-            $("#time-tab").removeClass('disabled');
-        });
-    });
-</script>
+<script src="admin/assets/js/admin.js"></script>

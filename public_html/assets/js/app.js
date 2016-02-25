@@ -1,6 +1,5 @@
 imsApp = angular.module('imsApp', ['ui.materialize']);
 
-
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
         $scope.current = $scope.pages[2];
@@ -85,7 +84,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
-        $scope.admin = $scope.adminPages[0];
+        $scope.adminCurrent = $scope.adminPages[0];
         $scope.print = function ()
         {
             console.log(JSON.stringify($scope.predicates));

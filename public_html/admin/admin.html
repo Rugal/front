@@ -1,0 +1,19 @@
+<link href="admin/assets/css/admin.css" rel="stylesheet">
+<div ng-controller="adminController">
+    <div class="navbar-fixed">
+        <ul id="dropdown" class="dropdown-content">
+            <li><a href="#" ng-click="admin=adminPages[0]">Student</a></li>
+            <li><a href="#" ng-click="admin=adminPages[1]">Company</a></li>
+            <li><a href="#" ng-click="admin=adminPages[2]">Job</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Sign out</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <a class="brand-logo center dropdown-button" href="#" data-activates="dropdown" data-beloworigin="true">
+                    <i class="material-icons right">dialpad</i>
+                </a>
+            </div>
+        </nav>
+    </div>
+ <div  ng-include="admin"></div>

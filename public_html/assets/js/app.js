@@ -2,7 +2,7 @@ imsApp = angular.module('imsApp', ['ui.materialize']);
 
 
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
-        $scope.pages = ['login.html', 'student.html', 'admin.html'];
+        $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
         $scope.current = $scope.pages[2];
         $scope.data = null;
         $scope.preload =
@@ -80,17 +80,22 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                         }, function (response) {});
             }
         };
-        $scope.loadAllCountries();
     }]);
 
 
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
+        $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
+        $scope.admin = $scope.adminPages[0];
         $scope.print = function ()
         {
             console.log(JSON.stringify($scope.predicates));
         };
         $scope.submit = function ()
         {
+            $scope.predicates.education.skillsMerged =
+                    $scope.predicates.education.skills[0]
+                    .concat($scope.predicates.education.skills[1])
+                    .concat($scope.predicates.education.skills[2]);
             $http({method: 'POST', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
                     .then(function (response) {}, function (response) {});
         };

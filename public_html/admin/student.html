@@ -1,22 +1,4 @@
-<link href="assets/css/admin.css" rel="stylesheet">
-<div ng-controller="adminController">
-    <div class="navbar-fixed">
-        <ul id="dropdown" class="dropdown-content">
-            <li><a href="#">Student</a></li>
-            <li><a href="#">Company</a></li>
-            <li><a href="#">Job</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Sign out</a></li>
-        </ul>
-        <nav>
-            <div class="nav-wrapper">
-                <a class="brand-logo center dropdown-button" href="#" data-activates="dropdown" data-beloworigin="true">
-                    <i class="material-icons right">dialpad</i>
-                </a>
-            </div>
-        </nav>
-    </div>
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large blue waves-effect waves-light">
             <i class="large material-icons">add</i>
         </a>
@@ -29,17 +11,17 @@
                     <a class="center">Student</a>
                 </li>
                 <li>
-                    <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light" >Personal</button>
+                    <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();">Personal</button>
                 </li>
                 <li>
-                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCertifications();loadAllSkills();">Education</button>
+                    <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();loadAllCertifications(); loadAllSkills();">Education</button>
                 </li>
                 <li>
-                    <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light" >Experience</button>
+                    <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();" >Experience</button>
                 </li>
                 <li class="divider" style="height: 15px;"></li>
                 <li>
-                    <button class="btn waves-effect waves-light red" ng-click="resetPredicates();">Reset
+                    <button class="btn waves-effect waves-light red" ng-click="print(); resetPredicates();">Reset
                         <i class="material-icons right">settings_backup_restore</i>
                     </button>
                 </li>
@@ -72,7 +54,7 @@
                         <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
                     </select>
                 </div>
-                <div id="immigration_status_row" class="col s12" >
+                <div id="immigration_status_row" class="col s12 lower-center" >
                     <ul >
                         <li>
                             <input name="status" type="radio" id="is1" ng-model="predicates.personal.status" value="-1"/><label for="is1">International Student</label>   
@@ -85,7 +67,7 @@
                         </li>
                     </ul>
                 </div>
-                <div id="gender_row" class="col s12">
+                <div id="gender_row" class="col s12 lower-center">
                     <ul >
                         <li>
                             <input name="gender" type="radio" ng-model="predicates.personal.gender" value="1" id="g1"/><label for="g1">Male</label>   
@@ -139,20 +121,20 @@
                 </div>
                 <div id="skill_row" class="input-field col s12">
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[0] track by s.sid;" ng-model="predicates.education.skills[0]" multiple  material-select watch></select>
+                        <select  ng-options="s.sid as s.name for s in preload.skills[0]" ng-model="predicates.education.skills[0]" multiple  material-select watch></select>
                         <label>Techniques</label>
                     </div>
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[1] track by s.sid;" ng-model="predicates.education.skills[1]" multiple  material-select watch></select>
+                        <select  ng-options="s.sid as s.name for s in preload.skills[1]" ng-model="predicates.education.skills[1]" multiple  material-select watch></select>
                         <label>CMS</label>
                     </div>
                     <div class="input-field col s12">
-                        <select  ng-options="s.name for s in preload.skills[2] track by s.sid;" ng-model="predicates.education.skills[2]" multiple  material-select watch></select>
+                        <select  ng-options="s.sid as s.name for s in preload.skills[2]" ng-model="predicates.education.skills[2]" multiple  material-select watch></select>
                         <label>Operating System</label>
                     </div>
                 </div>
                 <div id="certificate_row" class="input-field col s12">
-                    <select  ng-options="m.name for m in preload.certifications track by m.mid;" ng-model="predicates.education.certifications" multiple  material-select watch></select>
+                    <select  ng-options="m.mid as m.name for m in preload.certifications" ng-model="predicates.education.certifications" multiple  material-select watch></select>
                     <label>Certification owned</label>
                 </div>
             </div>
@@ -171,7 +153,7 @@
                         <li id="time-tab" class="tab col s3 disabled"><a href="#time-row">Time</a></li>
                     </ul>
                 </div>
-                <div id="work-experience-row" class="col s12">
+                <div id="work-experience-row" class="col s12 lower-center">
                     <ul>
                         <li>
                             <input id="w1" name="work" type="radio" ng-model="predicates.experience.work" value="0"/><label for="w1">Any</label>   
@@ -180,7 +162,7 @@
                             <input id="w2" name="work" type="radio"  ng-model="predicates.experience.work" value="1"/><label for="w2">Employed</label>
                         </li>
                         <li>
-                            <input id="w3" name="work" type="radio" ng-model="predicates.experience.work" value="2"/><label for="w3">Unemployed</label>
+                            <input id="w3" name="work" type="radio" ng-model="predicates.experience.work" value="-1"/><label for="w3">Unemployed</label>
                         </li>
                     </ul>
                 </div>

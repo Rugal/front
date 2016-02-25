@@ -1,0 +1,184 @@
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a class="center">Company</a>
+            </li>
+            <li>
+                <button data-target="company-basic-modal" class="modal-trigger btn waves-effect waves-light" ng-click="">Basic</button>
+            </li>
+            <li>
+                <button data-target="company-location-modal" class="modal-trigger btn waves-effect waves-light" ng-click="">Location</button>
+            </li>
+            <li>
+                <button data-target="company-contact-modal" class="modal-trigger btn waves-effect waves-light" ng-click="" >Contact</button>
+            </li>
+            <li class="divider" style="height: 15px;"></li>
+            <li>
+                <button class="btn waves-effect waves-light red" ng-click="print(); resetPredicates();">Reset
+                    <i class="material-icons right">settings_backup_restore</i>
+                </button>
+            </li>
+            <li>
+                <button class="btn waves-effect waves-light blue" ng-click="submit();">Search
+                    <i class="material-icons right">thumb_up</i>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+<!-- Modal Structure -->
+<div id="company-basic-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3"><a href="#immigration_status_row">Immigration Status</a></li>
+                    <li class="tab col s3" ><a  href="#nationality_row" >Nationality</a></li>
+                    <li class="tab col s3"><a href="#gender_row">Gender</a></li>  
+                </ul>
+            </div>
+            <div id="nationality_row" class="col s12">
+                <label>Country select</label>
+                <select class="center" id="nationality_row_options" ng-model="predicates.personal.nationality" watch material-select >
+                    <option value="0">Any</option>
+                    <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                </select>
+            </div>
+            <div id="immigration_status_row" class="col s12 lower-center" >
+                <ul >
+                    <li>
+                        <input name="status" type="radio" id="is1" ng-model="predicates.personal.status" value="-1"/><label for="is1">International Student</label>   
+                    </li>
+                    <li>
+                        <input name="status" type="radio" id="is2" ng-model="predicates.personal.status" value="1"/><label for="is2">Permanent resident/Canadian</label>
+                    </li>
+                    <li>
+                        <input name="status" type="radio" id="is3" ng-model="predicates.personal.status" value="0" checked/><label for="is3">Any</label>
+                    </li>
+                </ul>
+            </div>
+            <div id="gender_row" class="col s12 lower-center">
+                <ul >
+                    <li>
+                        <input name="gender" type="radio" ng-model="predicates.personal.gender" value="1" id="g1"/><label for="g1">Male</label>   
+                    </li>
+                    <li>
+                        <input name="gender" type="radio" ng-model="predicates.personal.gender" value="-1" id="g2"/><label for="g2">Female</label>
+                    </li>
+                    <li>
+                        <input name="gender" type="radio" ng-model="predicates.personal.gender" value="0" id="g3" checked/><label for="g3">Any</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+    </div>
+</div>
+<div id="company-location-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3"><a href="#degree_row">Degree</a></li>
+                    <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
+                    <li class="tab col s3"><a href="#certificate_row">Certificate</a></li>  
+                </ul>
+            </div>
+            <div id="degree_row" class="input-field col s12">
+                <div class="input-field col s12">
+                    <label>Country of Bachelor Degree</label>
+                    <select class="center" ng-model="predicates.education.degrees[0]" watch material-select >
+                        <option value="0">Any</option>
+                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <label>Country of Master Degree</label>
+                    <select class="center" ng-model="predicates.education.degrees[1]" watch material-select >
+                        <option value="0">Any</option>
+                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <label>Country of PHD Degree</label>
+                    <select class="center" ng-model="predicates.education.degrees[2]" watch material-select >
+                        <option value="0">Any</option>
+                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div id="skill_row" class="input-field col s12">
+                <div class="input-field col s12">
+                    <select  ng-options="s.sid as s.name for s in preload.skills[0]" ng-model="predicates.education.skills[0]" multiple  material-select watch></select>
+                    <label>Techniques</label>
+                </div>
+                <div class="input-field col s12">
+                    <select  ng-options="s.sid as s.name for s in preload.skills[1]" ng-model="predicates.education.skills[1]" multiple  material-select watch></select>
+                    <label>CMS</label>
+                </div>
+                <div class="input-field col s12">
+                    <select  ng-options="s.sid as s.name for s in preload.skills[2]" ng-model="predicates.education.skills[2]" multiple  material-select watch></select>
+                    <label>Operating System</label>
+                </div>
+            </div>
+            <div id="certificate_row" class="input-field col s12">
+                <select  ng-options="m.mid as m.name for m in preload.certifications" ng-model="predicates.education.certifications" multiple  material-select watch></select>
+                <label>Certification owned</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" >Ok</a>
+    </div>
+</div>
+<div id="company-contact-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li id="work-experience-tab" class="tab col s3"><a  class="active" href="#work-experience-row">Work Experience</a></li>
+                    <li id="company-country-tab" class="tab col s3 disabled"><a href="#company-country-row">Country</a></li>
+                    <li id="time-tab" class="tab col s3 disabled"><a href="#time-row">Time</a></li>
+                </ul>
+            </div>
+            <div id="work-experience-row" class="col s12 lower-center">
+                <ul>
+                    <li>
+                        <input id="w1" name="work" type="radio" ng-model="predicates.experience.work" value="0"/><label for="w1">Any</label>   
+                    </li>
+                    <li>
+                        <input id="w2" name="work" type="radio"  ng-model="predicates.experience.work" value="1"/><label for="w2">Employed</label>
+                    </li>
+                    <li>
+                        <input id="w3" name="work" type="radio" ng-model="predicates.experience.work" value="-1"/><label for="w3">Unemployed</label>
+                    </li>
+                </ul>
+            </div>
+            <div id="company-country-row" class="col s12">
+                <label>Country select</label>
+                <select class="center"  ng-model="predicates.experience.companyCountry" watch material-select >
+                    <option value="0">Any</option>
+                    <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                </select>
+            </div>
+            <div id="time-row" class="col s12">
+                <label>Since</label>
+                <p class="range-field">
+                    <input type="range" ng-model="predicates.experience.since" min="1990" max="2016" />
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+    </div>
+</div>
+<script src="admin/assets/js/admin.js"></script>

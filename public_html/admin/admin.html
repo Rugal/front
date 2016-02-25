@@ -2,9 +2,9 @@
 <div ng-controller="adminController">
     <div class="navbar-fixed">
         <ul id="dropdown" class="dropdown-content">
-            <li><a href="#" ng-click="admin=adminPages[0]">Student</a></li>
-            <li><a href="#" ng-click="admin=adminPages[1]">Company</a></li>
-            <li><a href="#" ng-click="admin=adminPages[2]">Job</a></li>
+            <li><a href="#" ng-click="admin = adminPages[0]">Student</a></li>
+            <li><a href="#" ng-click="admin = adminPages[1]">Company</a></li>
+            <li><a href="#" ng-click="admin = adminPages[2]">Job</a></li>
             <li class="divider"></li>
             <li><a href="#">Sign out</a></li>
         </ul>
@@ -16,4 +16,11 @@
             </div>
         </nav>
     </div>
- <div  ng-include="admin"></div>
+    <div  ng-include="admin"></div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large blue waves-effect waves-light">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+</div>

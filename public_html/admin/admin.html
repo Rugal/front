@@ -44,17 +44,53 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3 active"><a href="#degree_row">Basic</a></li>
+                    <li class="tab col s3 active"><a class="active" href="#student_basic_row" ng-click="loadAllCountries();">Basic</a></li>
                     <li class="tab col s3"><a href="#degree_row">Degree</a></li>
                     <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
                     <li class="tab col s3"><a href="#certificate_row">Certificate</a></li>
                     <li class="tab col s3"><a href="#certificate_row">Experience</a></li>
                 </ul>
             </div>
+            <div id="student_basic_row" class="col s12">
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input placeholder="First Name" required type="text" >
+                    </div>
+                    <div class="input-field col s4">
+                        <input placeholder="Middle Name"  type="text" >
+                    </div>
+                    <div class="input-field col s4">
+                        <input placeholder="Last Name" required type="text" >
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <label>Nationality select</label>
+                    <select  ng-options="c.cid as c.name for c in preload.allCountries" ng-model="" required material-select watch></select>
+                </div>
+                <div class="row">
+                    <div class="center switch s6 col">
+                        <label>
+                            Female
+                            <input type="checkbox">
+                            <span class="lever"></span>
+                            Male
+                        </label>
+                    </div>
+                    <div class="center switch s6 col">
+                        <label>
+                            International Student
+                            <input type="checkbox">
+                            <span class="lever"></span>
+                            PR/Citizen
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-company-modal" class="modal modal-fixed-footer">
@@ -62,7 +98,7 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3 active"><a href="#degree_row">Basic</a></li>
+                    <li class="tab col s3 active"><a href="#degree_row" >Basic</a></li>
                     <li class="tab col s3"><a href="#degree_row">Contact</a></li>
                     <li class="tab col s3"><a href="#skill_row">Misc</a></li>
                 </ul>
@@ -70,7 +106,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-skill-modal" class="modal modal-fixed-footer">
@@ -86,7 +123,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-city-modal" class="modal modal-fixed-footer">
@@ -102,7 +140,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green bqtn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-university-modal" class="modal modal-fixed-footer">
@@ -118,11 +157,13 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <script>
     $(document).ready(function () {
-        $('#add-more .modal-trigger').leanModal();
+        $('#add-more .modal-trigger').leanModal(
+                {dismissible: false});
     });
 </script>

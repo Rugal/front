@@ -89,7 +89,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         {
             console.log(JSON.stringify($scope.predicates));
         };
-        $scope.submit = function ()
+        $scope.searchStudent = function ()
         {
             $scope.predicates.education.skillsMerged =
                     $scope.predicates.education.skills[0]

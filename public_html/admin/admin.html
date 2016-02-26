@@ -54,7 +54,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-company-modal" class="modal modal-fixed-footer">
@@ -70,7 +71,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-skill-modal" class="modal modal-fixed-footer">
@@ -86,7 +88,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-city-modal" class="modal modal-fixed-footer">
@@ -102,7 +105,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green bqtn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <div id="add-university-modal" class="modal modal-fixed-footer">
@@ -118,11 +122,13 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
 </div>
 <script>
     $(document).ready(function () {
-        $('#add-more .modal-trigger').leanModal();
+        $('#add-more .modal-trigger').leanModal(
+                {dismissible: false});
     });
 </script>

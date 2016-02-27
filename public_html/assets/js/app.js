@@ -10,35 +10,6 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                     allCountries: [],
                     skills: []
                 };
-        $scope.predicates = null;
-        $scope.resetPredicates = function ()
-        {
-            default_predicates =
-                    {
-                        personal:
-                                {
-                                    nationality: 0,
-                                    gender: 0,
-                                    status: 0
-                                },
-                        education:
-                                {
-                                    skills: [[], [], []],
-                                    degrees: [0, 0, 0],
-                                    certifications: []
-                                },
-                        experience:
-                                {
-                                    work: 0,
-                                    companyCountry: 0,
-                                    since: 0
-                                }
-                    };
-            $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
-            angular.element('#work-experience-tab a').trigger('click');
-            angular.element('#w1').trigger('click');
-        };
-        $scope.resetPredicates();
         $scope.loadAllSkills = function ()
         {
             if (0 !== $scope.preload.skills.length)
@@ -83,6 +54,39 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 
 
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.predicates = null;
+        $scope.resetPredicates = function ()
+        {
+            default_predicates =
+                    {
+                        personal:
+                                {
+                                    firstName: "",
+                                    middleName: "",
+                                    lastName: "",
+                                    nationality: 0,
+                                    gender: 0,
+                                    status: 0
+                                },
+                        education:
+                                {
+                                    skills: [[], [], []],
+                                    degrees: [0, 0, 0],
+                                    certifications: []
+                                },
+                        experience:
+                                {
+                                    work: 0,
+                                    companyCountry: 0,
+                                    since: 0
+                                }
+                    };
+            $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
+            angular.element('#work-experience-tab a').trigger('click');
+            angular.element('#w1').trigger('click');
+        };
+        $scope.resetPredicates();
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
         $scope.adminCurrent = $scope.adminPages[0];
         $scope.print = function ()
@@ -97,5 +101,13 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     .concat($scope.predicates.education.skills[2]);
             $http({method: 'POST', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
                     .then(function (response) {}, function (response) {});
+        };
+        $scope.genderRadioBox = function ()
+        {
+            $scope.predicates.personal.gender = $("#genderRadioBox").prop('checked');
+        };
+        $scope.statusRadioBox = function ()
+        {
+            $scope.predicates.personal.status = $("#statusRadioBox").prop('checked');
         };
     }]);

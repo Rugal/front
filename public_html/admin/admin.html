@@ -54,33 +54,33 @@
             <div id="student_basic_row" class="col s12">
                 <div class="row">
                     <div class="input-field col s4">
-                        <input placeholder="First Name" required type="text" >
+                        <input placeholder="First Name" required type="text" ng-model="predicates.personal.firstName">
                     </div>
                     <div class="input-field col s4">
-                        <input placeholder="Middle Name"  type="text" >
+                        <input placeholder="Middle Name"  type="text" ng-model="predicates.personal.middleName">
                     </div>
                     <div class="input-field col s4">
-                        <input placeholder="Last Name" required type="text" >
+                        <input placeholder="Last Name" required type="text" ng-model="predicates.personal.lastName">
                     </div>
                 </div>
                 <div class="input-field col s12">
                     <label>Nationality select</label>
-                    <select  ng-options="c.cid as c.name for c in preload.allCountries" ng-model="" required material-select watch></select>
+                    <select  ng-options="c.cid as c.name for c in preload.allCountries" ng-model="predicates.personal.nationality" required material-select watch></select>
                 </div>
                 <div class="row">
                     <div class="center switch s6 col">
                         <label>
                             Female
-                            <input type="checkbox">
-                            <span class="lever"></span>
+                            <input id="genderRadioBox" type="checkbox" >
+                            <span class="lever" ng-click="genderRadioBox()"></span>
                             Male
                         </label>
                     </div>
                     <div class="center switch s6 col">
                         <label>
                             International Student
-                            <input type="checkbox">
-                            <span class="lever"></span>
+                            <input id="statusRadioBox" type="checkbox">
+                            <span class="lever" ng-click="statusRadioBox()" ></span>
                             PR/Citizen
                         </label>
                     </div>
@@ -90,7 +90,7 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="print()" >Submit</a>
     </div>
 </div>
 <div id="add-company-modal" class="modal modal-fixed-footer">

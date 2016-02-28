@@ -8,8 +8,20 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                 {
                     certifications: [],
                     allCountries: [],
-                    skills: []
+                    skills: [],
+                    companies: []
                 };
+        $scope.loadAllCompanies = function ()
+        {
+            if (0 === $scope.preload.companies.length)
+            {
+                $http({method: 'GET', url: 'http://localhost:8080/company/all'})
+                        .then(function (response)
+                        {
+                            $scope.preload.companies = response.data.data;
+                        }, function (response) {});
+            }
+        };
         $scope.loadAllSkills = function ()
         {
             if (0 !== $scope.preload.skills.length)

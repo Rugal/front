@@ -28,7 +28,7 @@
                     <li class="tab col s3"><a href="#student_degree_row"  ng-click="loadAllCountries();">Degree</a></li>
                     <li class="tab col s3"><a href="#student_skill_row" ng-click="loadAllSkills();">Skill</a></li>  
                     <li class="tab col s3"><a href="#student_certificate_row" ng-click="loadAllCertifications();">Certificate</a></li>
-                    <li class="tab col s3"><a href="#student_experience_row">Experience</a></li>
+                    <li class="tab col s3"><a href="#student_experience_row" ng-click="loadAllCompanies();">Experience</a></li>
                 </ul>
             </div>
             <div id="student_basic_row" class="col s12">
@@ -186,8 +186,8 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('ul.tabs').tabs();
-        $('#add-more .modal-trigger').leanModal(
-                {dismissible: false});
+    $('ul.tabs').tabs();
+    $('#add-more .modal-trigger').leanModal(
+    {dismissible: false});
     });
 </script>

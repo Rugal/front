@@ -89,6 +89,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                 },
                         experience:
                                 {
+                                    exp: [],
                                     work: 0,
                                     companyCountry: 0,
                                     since: 0

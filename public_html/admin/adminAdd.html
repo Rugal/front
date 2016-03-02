@@ -109,6 +109,61 @@
                 <select  ng-options="m.mid as m.name for m in preload.certifications" ng-model="predicates.education.certifications" multiple  material-select watch></select>
                 <label>Certification owned</label>
             </div>
+            <div id="student_experience_row" class="input-field col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First Job</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input placeholder="From"  type="text" ng-model="predicates.experience.exp[0].from" class="validate">
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="To"  type="text" ng-model="predicates.experience.exp[0].to" class="validate">
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <select  ng-options="c.cid as c.name for c in preload.companies" 
+                                         ng-model="predicates.experience.exp[0].com" material-select watch></select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Second Job</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input placeholder="From"  type="text" ng-model="predicates.experience.exp[1].from" class="validate">
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="To"  type="text" ng-model="predicates.experience.exp[1].to" class="validate">
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <select  ng-options="c.cid as c.name for c in preload.companies" 
+                                         ng-model="predicates.experience.exp[1].com" material-select watch></select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Third Job</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input placeholder="From"  type="text" ng-model="predicates.experience.exp[2].from" class="validate">
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="To"  type="text" ng-model="predicates.experience.exp[2].to" class="validate">
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <select  ng-options="c.cid as c.name for c in preload.companies" 
+                                         ng-model="predicates.experience.exp[2].com" material-select watch></select>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
@@ -186,8 +241,7 @@
 </div>
 <script>
     $(document).ready(function () {
-    $('ul.tabs').tabs();
-    $('#add-more .modal-trigger').leanModal(
-    {dismissible: false});
+        $('ul.tabs').tabs();
+        $('#add-more .modal-trigger').leanModal({dismissible: false});
     });
 </script>

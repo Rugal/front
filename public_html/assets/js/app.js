@@ -79,7 +79,8 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                     lastName: "",
                                     nationality: 0,
                                     gender: 0,
-                                    status: 0
+                                    status: 0,
+                                    availability: 0
                                 },
                         education:
                                 {
@@ -112,15 +113,37 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     $scope.predicates.education.skills[0]
                     .concat($scope.predicates.education.skills[1])
                     .concat($scope.predicates.education.skills[2]);
-            $http({method: 'POST', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
+            $http({method: 'PUT', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
                     .then(function (response) {}, function (response) {});
         };
         $scope.genderRadioBox = function ()
         {
-            $scope.predicates.personal.gender = $("#genderRadioBox").prop('checked');
+            $scope.predicates.personal.gender = $("#genderRadioBox").prop('checked') ? 1 : 0;
         };
         $scope.statusRadioBox = function ()
         {
-            $scope.predicates.personal.status = $("#statusRadioBox").prop('checked');
+            $scope.predicates.personal.status = $("#statusRadioBox").prop('checked') ? 1 : 0;
+        };
+        $scope.availabilityRadioBox = function ()
+        {
+            $scope.predicates.personal.availability = $("#availabilityRadioBox").prop('checked') ? 1 : 0;
+        };
+
+
+        $scope.submitStudent = function ()
+        {
+            $scope.statusRadioBox();
+            $scope.genderRadioBox();
+            $scope.availabilityRadioBox();
+            for (var i = 0; i < $scope.predicates.experience.exp.length; i++)
+            {
+                if ($scope.predicates.experience.exp[i].com === null)
+                {
+                    $scope.predicates.experience.exp[i] = null;
+                }
+            }
+            $scope.print();
+            $http({method: 'POST', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
+                    .then(function (response) {}, function (response) {});
         };
     }]);

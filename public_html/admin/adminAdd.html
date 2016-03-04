@@ -54,7 +54,7 @@
                         <label>
                             Female
                             <input id="genderRadioBox" checked type="checkbox" >
-                            <span class="lever" ng-click="genderRadioBox()"></span>
+                            <span class="lever" ></span>
                             Male
                         </label>
                     </div>
@@ -62,10 +62,18 @@
                         <label>
                             International Student
                             <input id="statusRadioBox" checked type="checkbox">
-                            <span class="lever" ng-click="statusRadioBox()" ></span>
+                            <span class="lever" ></span>
                             PR/Citizen
                         </label>
                     </div>
+                </div>
+                <div class="center switch s6 col">
+                    <label>
+                        Employed
+                        <input id="availabilityRadioBox" checked type="checkbox">
+                        <span class="lever" ></span>
+                        Seeking for job
+                    </label>
                 </div>
             </div>
             <div id="student_degree_row" class="col s12">
@@ -123,6 +131,7 @@
                                 </div>
                             </div>
                             <div class="input-field col s12">
+                                <label>Company</label>
                                 <select  ng-options="c.cid as c.name for c in preload.companies" 
                                          ng-model="predicates.experience.exp[0].com" material-select watch></select>
                             </div>
@@ -140,6 +149,7 @@
                                 </div>
                             </div>
                             <div class="input-field col s12">
+                                <label>Company</label>
                                 <select  ng-options="c.cid as c.name for c in preload.companies" 
                                          ng-model="predicates.experience.exp[1].com" material-select watch></select>
                             </div>
@@ -157,6 +167,7 @@
                                 </div>
                             </div>
                             <div class="input-field col s12">
+                                <label>Company</label>
                                 <select  ng-options="c.cid as c.name for c in preload.companies" 
                                          ng-model="predicates.experience.exp[2].com" material-select watch></select>
                             </div>
@@ -168,7 +179,7 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="statusRadioBox(); genderRadioBox(); print()" >Submit</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="submitStudent();" >Submit</a>
     </div>
 </div>
 <div id="add-company-modal" class="modal modal-fixed-footer">

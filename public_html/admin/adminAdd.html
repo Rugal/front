@@ -25,7 +25,7 @@
             <div class="col s12">
                 <ul class="tabs">
                     <li class="tab col s3 active"><a class="active" href="#student_basic_row" ng-click="loadAllCountries();">Basic</a></li>
-                    <li class="tab col s3"><a href="#student_degree_row"  ng-click="loadAllCountries();">Degree</a></li>
+                    <li class="tab col s3"><a href="#student_degree_row"  ng-click="loadAllUniversities();loadAllMajors();">Degree</a></li>
                     <li class="tab col s3"><a href="#student_skill_row" ng-click="loadAllSkills();">Skill</a></li>  
                     <li class="tab col s3"><a href="#student_certificate_row" ng-click="loadAllCertifications();">Certificate</a></li>
                     <li class="tab col s3"><a href="#student_experience_row" ng-click="loadAllCompanies();">Experience</a></li>
@@ -77,25 +77,46 @@
                 </div>
             </div>
             <div id="student_degree_row" class="col s12">
-                <div class="input-field col s12">
-                    <label>Country of Bachelor Degree</label>
-                    <select class="center" ng-model="predicates.education.degrees[0]" required watch material-select >
+                <div class="input-field col s6">
+                    <label>University of Bachelor Degree</label>
+                    <select class="center" ng-model="predicates.education.deg[0].uid" watch material-select >
                         <option value="0" selected>None</option>
-                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                        <option ng-repeat="u in preload.universities" value="{{u.uid}}" >{{u.name}}</option>
                     </select>
                 </div>
-                <div class="input-field col s12">
-                    <label>Country of Master Degree</label>
-                    <select class="center" ng-model="predicates.education.degrees[1]" watch material-select >
-                        <option value="0">None</option>
-                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                <div class="input-field col s6">
+                    <label>Major of Bachelor Degree</label>
+                    <select class="center" ng-model="predicates.education.deg[0].mid" watch material-select >
+                        <option value="0" selected>None</option>
+                        <option ng-repeat="m in preload.majors" value="{{m.mid}}" >{{m.name}}</option>
                     </select>
                 </div>
-                <div class="input-field col s12">
-                    <label>Country of PHD Degree</label>
-                    <select class="center" ng-model="predicates.education.degrees[2]" watch material-select >
+                <div class="input-field col s6">
+                    <label>University of Master Degree</label>
+                    <select class="center" ng-model="predicates.education.deg[1].uid" watch material-select >
                         <option value="0">None</option>
-                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
+                        <option ng-repeat="u in preload.universities" value="{{u.uid}}" >{{u.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <label>Major of Master Degree</label>
+                    <select class="center" ng-model="predicates.education.deg[1].mid" watch material-select >
+                        <option value="0" selected>None</option>
+                        <option ng-repeat="m in preload.majors" value="{{m.mid}}" >{{m.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <label>University of PHD Degree</label>
+                    <select class="center" ng-model="predicates.education.deg[2].uid" watch material-select >
+                        <option value="0">None</option>
+                        <option ng-repeat="u in preload.universities" value="{{u.uid}}" >{{u.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <label>Major of PHD Degree</label>
+                    <select class="center" ng-model="predicates.education.deg[2].mid" watch material-select >
+                        <option value="0" selected>None</option>
+                        <option ng-repeat="m in preload.majors" value="{{m.mid}}" >{{m.name}}</option>
                     </select>
                 </div>
             </div>

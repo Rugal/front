@@ -9,6 +9,8 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                     certifications: [],
                     allCountries: [],
                     skills: [],
+                    majors: [],
+                    universities: [],
                     companies: []
                 };
         $scope.loadAllCompanies = function ()
@@ -40,11 +42,33 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                 loadSkills(i);
             }
         };
+        $scope.loadAllUniversities = function ()
+        {
+            if (0 === $scope.preload.universities.length)
+            {
+                $http({method: 'GET', url: 'http://localhost:8080/university/all'})
+                        .then(function (response)
+                        {
+                            $scope.preload.universities = response.data.data;
+                        }, function (response) {});
+            }
+        };
+        $scope.loadAllMajors = function ()
+        {
+            if (0 === $scope.preload.majors.length)
+            {
+                $http({method: 'GET', url: 'http://localhost:8080/major?type=major'})
+                        .then(function (response)
+                        {
+                            $scope.preload.majors = response.data.data;
+                        }, function (response) {});
+            }
+        };
         $scope.loadAllCertifications = function ()
         {
             if (0 === $scope.preload.certifications.length)
             {
-                $http({method: 'GET', url: 'http://localhost:8080/major/certification'})
+                $http({method: 'GET', url: 'http://localhost:8080/major?type=certification'})
                         .then(function (response)
                         {
                             $scope.preload.certifications = response.data.data;
@@ -86,6 +110,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                 {
                                     skills: [[], [], []],
                                     degrees: [0, 0, 0],
+                                    deg: [{uid: 0, mid: 0}, {uid: 0, mid: 0}, {uid: 0, mid: 0}],
                                     certifications: []
                                 },
                         experience:

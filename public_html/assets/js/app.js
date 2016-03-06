@@ -1,4 +1,4 @@
-imsApp = angular.module('imsApp', ['ui.materialize']);
+imsApp = angular.module('imsApp', ['ui.materialize', 'ngTable']);
 
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
@@ -11,7 +11,8 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                     skills: [],
                     majors: [],
                     universities: [],
-                    companies: []
+                    companies: [],
+                    students: []
                 };
         $scope.loadAllCompanies = function ()
         {
@@ -138,7 +139,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     $scope.predicates.education.skills[0]
                     .concat($scope.predicates.education.skills[1])
                     .concat($scope.predicates.education.skills[2]);
-            $http({method: 'PUT', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
+            $http({method: 'put', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
                     .then(function (response) {}, function (response) {});
         };
         $scope.genderRadioBox = function ()
@@ -169,6 +170,10 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             }
             $scope.print();
             $http({method: 'POST', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
-                    .then(function (response) {}, function (response) {});
+                    .then(function (response)
+                    {
+                        $scope.preload.students = response.data.data;
+                    },
+                            function (response) {});
         };
     }]);

@@ -31,6 +31,22 @@
 </div>
 <!-- /#wrapper -->
 
+<div style="position: absolute; left:220px; width: 80%">
+    <table ng-table="" class="highlight table table-condensed table-bordered" show-filter="true">
+        <tr ng-repeat="student in preload.students">
+            <td data-title="'SID'"  sortable="'sid'">{{student.sid}}</td>
+            <td data-title="'First Name'" filter="{ firstName :'text'}" sortable="'firstName'">{{student.firstName}}</td>
+            <td data-title="'Middle Name'" filter="{ middleName: 'text'}" sortable="'middleName'">{{student.middleName}}</td>
+            <td data-title="'Last Name'" filter="{ lastName: 'text'}" sortable="'lastName'">{{student.lastName}}</td>
+            <td data-title="'Nationality'" filter="{ name: 'text'}" sortable="'name'">{{student.country.name}}</td>
+            <td data-title="'Gender'" filter="{ gender: 'text'}" sortable="'gender'">{{student.gender}}</td>
+            <td data-title="'Status'" filter="{ status: 'text'}" sortable="'status'">{{student.status}}</td>
+            <td data-title="'Availability'" filter="{ availability: 'text'}" sortable="'availability'">{{student.availability}}</td>
+        </tr>
+    </table>
+</div>
+
+
 <!-- Modal Structure -->
 <div id="personal-modal" class="modal modal-fixed-footer">
     <div class="modal-content">
@@ -183,29 +199,29 @@
 </div>
 <script>
     $(document).ready(function () {
-    $('#wrapper .modal-trigger').leanModal();
-    $('ul.tabs').tabs();
-    $('select').material_select();
-    $("#w1").click(function () {
-        $("#company-country-tab").addClass('disabled');
-        $("#time-tab").addClass('disabled');
+        $('#wrapper .modal-trigger').leanModal();
+        $('ul.tabs').tabs();
+        $('select').material_select();
+        $("#w1").click(function () {
+            $("#company-country-tab").addClass('disabled');
+            $("#time-tab").addClass('disabled');
+        });
+        $("#w3").click(function () {
+            $("#company-country-tab").addClass('disabled');
+            $("#time-tab").removeClass('disabled');
+        });
+        $("#w2").click(function () {
+            $("#company-country-tab").removeClass('disabled');
+            $("#time-tab").removeClass('disabled');
+        });
     });
-    $("#w3").click(function () {
-        $("#company-country-tab").addClass('disabled');
-        $("#time-tab").removeClass('disabled');
+    $('.dropdown-button').dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrain_width: false, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
-    $("#w2").click(function () {
-        $("#company-country-tab").removeClass('disabled');
-        $("#time-tab").removeClass('disabled');
-    });
-});
-$('.dropdown-button').dropdown({
-    inDuration: 300,
-    outDuration: 225,
-    constrain_width: false, // Does not change width of dropdown to that of the activator
-    hover: true, // Activate on hover
-    gutter: 0, // Spacing from edge
-    belowOrigin: false, // Displays dropdown below the button
-    alignment: 'left' // Displays dropdown with edge aligned to the left of button
-});
 </script>

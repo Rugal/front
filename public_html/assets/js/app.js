@@ -1,6 +1,7 @@
 imsApp = angular.module('imsApp', ['ui.materialize', 'ngTable']);
 
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
+        $scope.HOST = 'http://localhost:8080';
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
         $scope.current = $scope.pages[2];
         $scope.data = null;
@@ -18,7 +19,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         {
             if (0 === $scope.preload.companies.length)
             {
-                $http({method: 'GET', url: 'http://localhost:8080/company/all'})
+                $http({method: 'GET', url: $scope.HOST + '/company/all'})
                         .then(function (response)
                         {
                             $scope.preload.companies = response.data.data;
@@ -33,7 +34,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
             }
             loadSkills = function (stid)
             {
-                $http({method: 'GET', url: 'http://localhost:8080/skilltype/' + stid + '/skill'})
+                $http({method: 'GET', url: $scope.HOST + '/skilltype/' + stid + '/skill'})
                         .then(function (response) {
                             $scope.preload.skills[stid - 1] = response.data.data;
                         }, function (response) {});
@@ -47,7 +48,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         {
             if (0 === $scope.preload.universities.length)
             {
-                $http({method: 'GET', url: 'http://localhost:8080/university/all'})
+                $http({method: 'GET', url: $scope.HOST + '/university/all'})
                         .then(function (response)
                         {
                             $scope.preload.universities = response.data.data;
@@ -58,7 +59,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         {
             if (0 === $scope.preload.majors.length)
             {
-                $http({method: 'GET', url: 'http://localhost:8080/major?type=major'})
+                $http({method: 'GET', url: $scope.HOST + '/major?type=major'})
                         .then(function (response)
                         {
                             $scope.preload.majors = response.data.data;
@@ -69,7 +70,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         {
             if (0 === $scope.preload.certifications.length)
             {
-                $http({method: 'GET', url: 'http://localhost:8080/major?type=certification'})
+                $http({method: 'GET', url: $scope.HOST + '/major?type=certification'})
                         .then(function (response)
                         {
                             $scope.preload.certifications = response.data.data;
@@ -80,7 +81,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         {
             if (0 === $scope.preload.allCountries.length)
             {
-                $http({method: 'GET', url: 'http://localhost:8080/country/all'})
+                $http({method: 'GET', url: $scope.HOST + '/country/all'})
                         .then(function (response)
                         {
                             $scope.preload.allCountries = response.data.data;
@@ -123,6 +124,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                 }
                     };
             $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
+            $scope.preload.students = [];
             angular.element('#work-experience-tab a').trigger('click');
             angular.element('#w1').trigger('click');
         };
@@ -139,8 +141,11 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     $scope.predicates.education.skills[0]
                     .concat($scope.predicates.education.skills[1])
                     .concat($scope.predicates.education.skills[2]);
-            $http({method: 'put', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
-                    .then(function (response) {}, function (response) {});
+            $http({method: 'PUT', url: $scope.HOST + '/admin/student',
+                headers: {'Content-Type': 'application/json'}, data: $scope.predicates})
+                    .then(function (response) {
+                        $scope.preload.students = response.data.data;
+                    }, function (response) {});
         };
         $scope.genderRadioBox = function ()
         {
@@ -169,10 +174,9 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                 }
             }
             $scope.print();
-            $http({method: 'POST', url: 'http://localhost:8080/admin/student', data: $scope.predicates})
+            $http({method: 'POST', url: $scope.HOST + '/admin/student', data: $scope.predicates})
                     .then(function (response)
                     {
-                        $scope.preload.students = response.data.data;
                     },
                             function (response) {});
         };

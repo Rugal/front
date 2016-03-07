@@ -4,7 +4,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         $scope.HOST = 'http://localhost:8080';
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
         $scope.current = $scope.pages[2];
-        $scope.data = null;
+//        $scope.data = null;
         $scope.preload =
                 {
                     certifications: [],
@@ -94,6 +94,17 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.predicates = null;
+        $scope.getStudent = function (sid)
+        {
+            $scope.predicates.education.skillsMerged =
+                    $scope.predicates.education.skills[0]
+                    .concat($scope.predicates.education.skills[1])
+                    .concat($scope.predicates.education.skills[2]);
+            $http({method: 'GET', url: $scope.HOST + '/student/' + sid})
+                    .then(function (response) {
+                        $scope.student = response.data.data;
+                    }, function (response) {});
+        };
         $scope.resetPredicates = function ()
         {
             default_predicates =
@@ -175,9 +186,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             }
             $scope.print();
             $http({method: 'POST', url: $scope.HOST + '/admin/student', data: $scope.predicates})
-                    .then(function (response)
-                    {
-                    },
-                            function (response) {});
+                    .then(function (response) {}, function (response) {});
         };
     }]);

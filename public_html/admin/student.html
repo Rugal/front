@@ -39,9 +39,9 @@
             <td data-title="'Middle Name'" filter="{ middleName: 'text'}" sortable="'middleName'">{{student.middleName}}</td>
             <td data-title="'Last Name'" filter="{ lastName: 'text'}" sortable="'lastName'">{{student.lastName}}</td>
             <td data-title="'Nationality'" filter="{ name: 'text'}" sortable="'name'">{{student.country.name}}</td>
-            <td data-title="'Gender'"  sortable="'gender'">{{student.gender}}</td>
-            <td data-title="'Status'"  sortable="'status'">{{student.status}}</td>
-            <td data-title="'Availability'"  sortable="'availability'">{{student.availability}}</td>
+            <td data-title="'Gender'"  sortable="'gender'">{{student.gender === true ? "Male" : "Female"}}</td>
+            <td data-title="'Status'"  sortable="'status'">{{student.status === true ? "PR/Canadian" : "International Student"}}</td>
+            <td data-title="'Availability'"  sortable="'availability'">{{student.availability === true ? "Seeking" : "Employed"}}</td>
         </tr>
     </table>
 </div>

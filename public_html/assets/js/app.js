@@ -96,13 +96,33 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         $scope.predicates = null;
         $scope.getStudent = function (sid)
         {
-            $scope.predicates.education.skillsMerged =
-                    $scope.predicates.education.skills[0]
-                    .concat($scope.predicates.education.skills[1])
-                    .concat($scope.predicates.education.skills[2]);
+            var getSkillsByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/skillset?student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                        }, function (response) {});
+            };
+            var getEducationsByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/education?type=major&student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                        }, function (response) {});
+            };
+            var getCertificationsByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/education?type=certification&student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                        }, function (response) {});
+            };
             $http({method: 'GET', url: $scope.HOST + '/student/' + sid})
                     .then(function (response) {
-                        $scope.student = response.data.data;
+                        var get = response.data.data;
+                        $scope.predicates.personal.availability = get.availability;
+                        $scope.predicates.personal.status = get.status;
+                        $scope.predicates.personal.gender = get.gender;
+                        $scope.predicates.personal.firstName = get.firstName;
+                        $scope.predicates.personal.middleName = get.middleName;
+                        $scope.predicates.personal.lastName = get.lastName;
                     }, function (response) {});
         };
         $scope.resetPredicates = function ()

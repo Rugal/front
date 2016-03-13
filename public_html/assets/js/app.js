@@ -1,5 +1,4 @@
 imsApp = angular.module('imsApp', ['ui.materialize', 'ngTable']);
-
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
         $scope.HOST = 'http://localhost:8080';
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
@@ -89,8 +88,6 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
             }
         };
     }]);
-
-
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.predicates = null;
@@ -100,18 +97,40 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                 $http({method: 'GET', url: $scope.HOST + '/skillset?student=' + sid})
                         .then(function (response) {
                             var get = response.data.data;
+                            $scope.predicates.education.skills = get;
                         }, function (response) {});
             };
             var getEducationsByStudent = function (sid) {
                 $http({method: 'GET', url: $scope.HOST + '/education?type=major&student=' + sid})
                         .then(function (response) {
                             var get = response.data.data;
+                            for (var i = 0; i < get.length; i++)
+                            {
+                                $scope.predicates.education.deg[i].uid = get[i].university.uid;
+                                $scope.predicates.education.deg[i].mid = get[i].major.mid;
+                                $scope.predicates.education.deg[i].from = get[i].startDate;
+                                $scope.predicates.education.deg[i].to = get[i].endDate;
+                                $scope.predicates.education.deg[i].gpa = get[i].gpa;
+                            }
                         }, function (response) {});
             };
             var getCertificationsByStudent = function (sid) {
                 $http({method: 'GET', url: $scope.HOST + '/education?type=certification&student=' + sid})
                         .then(function (response) {
                             var get = response.data.data;
+                            $scope.predicates.education.certifications = get;
+                        }, function (response) {});
+            };
+            var getExperienceByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/experience?student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                            for (var i = 0; i < get.length; i++)
+                            {
+                                $scope.predicates.experience.exp[i].com = get[i].company.cid;
+                                $scope.predicates.experience.exp[i].from = get[i].startDate;
+                                $scope.predicates.experience.exp[i].to = get[i].endDate;
+                            }
                         }, function (response) {});
             };
             $http({method: 'GET', url: $scope.HOST + '/student/' + sid})
@@ -123,6 +142,10 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                         $scope.predicates.personal.firstName = get.firstName;
                         $scope.predicates.personal.middleName = get.middleName;
                         $scope.predicates.personal.lastName = get.lastName;
+                        getSkillsByStudent(get.sid);
+                        getEducationsByStudent(get.sid);
+                        getCertificationsByStudent(get.sid);
+                        getExperienceByStudent(get.sid);
                     }, function (response) {});
         };
         $scope.resetPredicates = function ()
@@ -190,8 +213,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         {
             $scope.predicates.personal.availability = $("#availabilityRadioBox").prop('checked') ? 1 : 0;
         };
-
-
         $scope.submitStudent = function ()
         {
             $scope.statusRadioBox();

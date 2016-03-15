@@ -151,10 +151,13 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                         $scope.predicates.personal.firstName = get.firstName;
                         $scope.predicates.personal.middleName = get.middleName;
                         $scope.predicates.personal.lastName = get.lastName;
+                        $("#genderRadioBox").prop('checked', $scope.predicates.personal.gender);
+                        $("#statusRadioBox").prop('checked', $scope.predicates.personal.status);
+                        $("#availabilityRadioBox").prop('checked', $scope.predicates.personal.availability);
                         getSkillsByStudent(get.sid);
                         getEducationsByStudent(get.sid);
                         getCertificationsByStudent(get.sid);
-//                        getExperienceByStudent(get.sid);
+                        getExperienceByStudent(get.sid);
                         $scope.print();
                         $('#add-student-modal').openModal();
                     }, function (response) {});

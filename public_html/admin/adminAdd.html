@@ -86,7 +86,8 @@
                                                                     <option value="0" >None</option>
                                     <option ng-repeat="u in preload.universities" value="{{u.uid}}" >{{u.name}}</option>
                                                                 </select>-->
-                                <select class="center" ng-options="u.uid as u.name for u in preload.universities" ng-model="predicates.education.deg[0].uid" material-select watch></select>
+                                <select class="center" ng-options="u.uid as u.name for u in preload.universities"
+                                        ng-model="predicates.education.deg[0].uid" material-select watch></select>
                             </div>
                             <div class="input-field col s6">
                                 <label>Major</label>
@@ -94,7 +95,8 @@
                                                                     <option value="0" selected>None</option>
                                     <option ng-repeat="m in preload.majors" value="{{m.mid}}" >{{m.name}}</option>
                                                                 </select>-->
-                                <select class="center" ng-options="m.mid as m.name for m in preload.majors" ng-model="predicates.education.deg[0].mid" material-select watch></select>
+                                <select class="center" ng-options="m.mid as m.name for m in preload.majors"
+                                        ng-model="predicates.education.deg[0].mid" material-select watch></select>
                             </div>
                             <div class="input-field col s4">
                                 <input placeholder="From"  type="text" ng-model="predicates.education.deg[0].from" class="validate">
@@ -114,11 +116,13 @@
                         <div class="collapsible-body">
                             <div class="input-field col s6">
                                 <label>University</label>
-                                <select class="center" ng-options="u.uid as u.name for u in preload.universities" ng-model="predicates.education.deg[1].uid" material-select watch></select>
+                                <select class="center" ng-options="u.uid as u.name for u in preload.universities"
+                                        ng-model="predicates.education.deg[1].uid" material-select watch></select>
                             </div>
                             <div class="input-field col s6">
                                 <label>Major</label>
-                                <select class="center" ng-options="m.mid as m.name for m in preload.majors" ng-model="predicates.education.deg[1].mid" material-select watch></select>
+                                <select class="center" ng-options="m.mid as m.name for m in preload.majors"
+                                        ng-model="predicates.education.deg[1].mid" material-select watch></select>
                             </div>
                             <div class="input-field col s4">
                                 <input placeholder="From"  type="text" ng-model="predicates.education.deg[1].from" class="validate">
@@ -138,11 +142,13 @@
                         <div class="collapsible-body">
                             <div class="input-field col s6">
                                 <label>University</label>
-                                <select class="center" ng-options="u.uid as u.name for u in preload.universities" ng-model="predicates.education.deg[2].uid" material-select watch></select>
+                                <select class="center" ng-options="u.uid as u.name for u in preload.universities"
+                                        ng-model="predicates.education.deg[2].uid" material-select watch></select>
                             </div>
                             <div class="input-field col s6">
                                 <label>Major</label>
-                                <select class="center" ng-options="m.mid as m.name for m in preload.majors" ng-model="predicates.education.deg[2].mid" material-select watch></select>
+                                <select class="center" ng-options="m.mid as m.name for m in preload.majors"
+                                        ng-model="predicates.education.deg[2].mid" material-select watch></select>
                             </div>
                             <div class="input-field col s4">
                                 <input placeholder="From"  type="text" ng-model="predicates.education.deg[2].from" class="validate">
@@ -162,7 +168,8 @@
             </div>
             <div id="student_skill_row" class="input-field col s12">
                 <div class="input-field col s12">
-                    <select  ng-options="s.sid as s.name for s in preload.skills[0]" ng-model="predicates.education.skills[0]" multiple  material-select watch></select>
+                    <select  ng-options="s.sid as s.name for s in preload.skills[0]" ng-model="predicates.education.skills[0]"
+                             multiple  material-select watch></select>
                     <label>Techniques</label>
                 </div>
                 <div class="input-field col s12">
@@ -175,7 +182,8 @@
                 </div>
             </div>
             <div id="student_certificate_row" class="input-field col s12">
-                <select  ng-options="m.mid as m.name for m in preload.certifications" ng-model="predicates.education.certifications" multiple  material-select watch></select>
+                <select  ng-options="m.mid as m.name for m in preload.certifications" ng-model="predicates.education.certifications"
+                         multiple  material-select watch></select>
                 <label>Certification owned</label>
             </div>
             <div id="student_experience_row" class="input-field col s12">

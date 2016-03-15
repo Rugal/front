@@ -153,7 +153,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                         $scope.predicates.personal.lastName = get.lastName;
                         getSkillsByStudent(get.sid);
                         getEducationsByStudent(get.sid);
-//                        getCertificationsByStudent(get.sid);
+                        getCertificationsByStudent(get.sid);
 //                        getExperienceByStudent(get.sid);
                         $scope.print();
                         $('#add-student-modal').openModal();

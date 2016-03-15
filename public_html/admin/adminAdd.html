@@ -1,4 +1,3 @@
-
 <div id="add-more" class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large blue waves-effect waves-light">
         <i class="large material-icons">add</i>
@@ -82,29 +81,29 @@
                         <div class="collapsible-header"><i class="material-icons">filter_drama</i>Bachelor Degree</div>
                         <div class="collapsible-body">
                             <div class="input-field col s6">
-                                <label>University of Bachelor Degree</label>
+                                <label>University</label>
                                 <select class="center" ng-model="predicates.education.deg[0].uid" watch material-select >
                                     <option value="0" selected>None</option>
                                     <option ng-repeat="u in preload.universities" value="{{u.uid}}" >{{u.name}}</option>
                                 </select>
                             </div>
                             <div class="input-field col s6">
-                                <label>Major of Bachelor Degree</label>
+                                <label>Major</label>
                                 <select class="center" ng-model="predicates.education.deg[0].mid" watch material-select >
                                     <option value="0" selected>None</option>
                                     <option ng-repeat="m in preload.majors" value="{{m.mid}}" >{{m.name}}</option>
                                 </select>
                             </div>
                             <div class="input-field col s4">
-                                <input placeholder="From"  type="text" ng-model="predicates.experience.deg[0].from" class="validate">
+                                <input placeholder="From"  type="text" ng-model="predicates.education.deg[0].from" class="validate">
                             </div>
                             <div class="input-field col s4">
-                                <input placeholder="To"  type="text" ng-model="predicates.experience.deg[0].to" class="validate">
+                                <input placeholder="To"  type="text" ng-model="predicates.education.deg[0].to" class="validate">
                             </div>
                             <div class="input-field col s4">
                                 <i class="material-icons prefix">grade</i>
                                 <label>GPA out of 100</label>
-                                <input placeholder="GPA"  type="text" ng-model="predicates.experience.deg[0].gpa" class="validate">
+                                <input placeholder="GPA"  type="text" ng-model="predicates.education.deg[0].gpa" class="validate">
                             </div>
                         </div>
                     </li>
@@ -112,29 +111,29 @@
                         <div class="collapsible-header"><i class="material-icons">filter_drama</i>Master Degree</div>
                         <div class="collapsible-body">
                             <div class="input-field col s6">
-                                <label>University of Master Degree</label>
+                                <label>University</label>
                                 <select class="center" ng-model="predicates.education.deg[1].uid" watch material-select >
                                     <option value="0">None</option>
                                     <option ng-repeat="u in preload.universities" value="{{u.uid}}" >{{u.name}}</option>
                                 </select>
                             </div>
                             <div class="input-field col s6">
-                                <label>Major of Master Degree</label>
+                                <label>Major</label>
                                 <select class="center" ng-model="predicates.education.deg[1].mid" watch material-select >
                                     <option value="0" selected>None</option>
                                     <option ng-repeat="m in preload.majors" value="{{m.mid}}" >{{m.name}}</option>
                                 </select>
                             </div>
                             <div class="input-field col s4">
-                                <input placeholder="From"  type="text" ng-model="predicates.experience.deg[1].from" class="validate">
+                                <input placeholder="From"  type="text" ng-model="predicates.education.deg[1].from" class="validate">
                             </div>
                             <div class="input-field col s4">
-                                <input placeholder="To"  type="text" ng-model="predicates.experience.deg[1].to" class="validate">
+                                <input placeholder="To"  type="text" ng-model="predicates.education.deg[1].to" class="validate">
                             </div>
                             <div class="input-field col s4">
                                 <label>GPA out of 100</label>
                                 <i class="material-icons prefix">grade</i>
-                                <input placeholder="GPA"  type="text" ng-model="predicates.experience.deg[1].gpa" class="validate">
+                                <input placeholder="GPA"  type="text" ng-model="predicates.education.deg[1].gpa" class="validate">
                             </div>
                         </div>
                     </li>
@@ -142,29 +141,29 @@
                         <div class="collapsible-header"><i class="material-icons">filter_drama</i>P.H.D Degree</div>
                         <div class="collapsible-body">
                             <div class="input-field col s6">
-                                <label>University of PHD Degree</label>
+                                <label>University</label>
                                 <select class="center" ng-model="predicates.education.deg[2].uid" watch material-select >
                                     <option value="0">None</option>
                                     <option ng-repeat="u in preload.universities" value="{{u.uid}}" >{{u.name}}</option>
                                 </select>
                             </div>
                             <div class="input-field col s6">
-                                <label>Major of PHD Degree</label>
+                                <label>Major</label>
                                 <select class="center" ng-model="predicates.education.deg[2].mid" watch material-select >
                                     <option value="0" selected>None</option>
                                     <option ng-repeat="m in preload.majors" value="{{m.mid}}" >{{m.name}}</option>
                                 </select>
                             </div>
                             <div class="input-field col s4">
-                                <input placeholder="From"  type="text" ng-model="predicates.experience.deg[2].from" class="validate">
+                                <input placeholder="From"  type="text" ng-model="predicates.education.deg[2].from" class="validate">
                             </div>
                             <div class="input-field col s4">
-                                <input placeholder="To"  type="text" ng-model="predicates.experience.deg[2].to" class="validate">
+                                <input placeholder="To"  type="text" ng-model="predicates.education.deg[2].to" class="validate">
                             </div>
                             <div class="input-field col s4">
                                 <label>GPA out of 100</label>
                                 <i class="material-icons prefix">grade</i>
-                                <input placeholder="GPA"  type="text" ng-model="predicates.experience.deg[2].gpa" class="validate">
+                                <input placeholder="GPA"  type="text" ng-model="predicates.education.deg[2].gpa" class="validate">
                             </div>
                         </div>
                     </li>
@@ -324,7 +323,7 @@
 </div>
 <script>
     $(document).ready(function () {
-    $('ul.tabs').tabs();
-    $('#add-more .modal-trigger').leanModal({dismissible: false});
+        $('ul.tabs').tabs();
+        $('#add-more .modal-trigger').leanModal({dismissible: false});
     });
 </script>

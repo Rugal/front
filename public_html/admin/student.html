@@ -27,14 +27,12 @@
             </li>
         </ul>
     </div>
-    <!-- /#sidebar-wrapper -->
 </div>
-<!-- /#wrapper -->
 
 <div style="position: absolute; left:220px; width: 80%">
     <table ng-table="" class="highlight table " show-filter="true">
         <tr ng-repeat="student in preload.students track by student.sid">
-            <td data-title="'SID'"   sortable="'sid'"><a ng-click="getStudent({{student.sid}})" >{{student.sid}}</a></td>
+            <td data-title="'SID'"   sortable="'sid'"><a ng-click="getStudent(student.sid)" >{{student.sid}}</a></td>
             <td data-title="'First Name'" filter="{ firstName :'text'}" sortable="'firstName'">{{student.firstName}}</td>
             <td data-title="'Middle Name'" filter="{ middleName: 'text'}" sortable="'middleName'">{{student.middleName}}</td>
             <td data-title="'Last Name'" filter="{ lastName: 'text'}" sortable="'lastName'">{{student.lastName}}</td>

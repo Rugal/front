@@ -91,13 +91,20 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.predicates = null;
+        $scope.print = function ()
+        {
+            console.log(JSON.stringify($scope.predicates));
+        };
         $scope.getStudent = function (sid)
         {
             var getSkillsByStudent = function (sid) {
                 $http({method: 'GET', url: $scope.HOST + '/skillset?student=' + sid})
                         .then(function (response) {
                             var get = response.data.data;
-                            $scope.predicates.education.skills = get;
+                            for (var i = 0; i < 3; i++)
+                            {
+                                $scope.predicates.education.skills[i] = get;
+                            }
                         }, function (response) {});
             };
             var getEducationsByStudent = function (sid) {
@@ -112,6 +119,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                 $scope.predicates.education.deg[i].to = get[i].endDate;
                                 $scope.predicates.education.deg[i].gpa = get[i].gpa;
                             }
+                            $scope.print();
                         }, function (response) {});
             };
             var getCertificationsByStudent = function (sid) {
@@ -137,6 +145,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     .then(function (response) {
                         var get = response.data.data;
                         $scope.predicates.personal.availability = get.availability;
+                        $scope.predicates.personal.nationality = get.country.cid;
                         $scope.predicates.personal.status = get.status;
                         $scope.predicates.personal.gender = get.gender;
                         $scope.predicates.personal.firstName = get.firstName;
@@ -144,8 +153,10 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                         $scope.predicates.personal.lastName = get.lastName;
                         getSkillsByStudent(get.sid);
                         getEducationsByStudent(get.sid);
-                        getCertificationsByStudent(get.sid);
-                        getExperienceByStudent(get.sid);
+//                        getCertificationsByStudent(get.sid);
+//                        getExperienceByStudent(get.sid);
+                        $scope.print();
+                        $('#add-student-modal').openModal();
                     }, function (response) {});
         };
         $scope.resetPredicates = function ()
@@ -171,7 +182,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                 },
                         experience:
                                 {
-                                    exp: [],
+                                    exp: [{}, {}, {}],
                                     work: 0,
                                     companyCountry: 0,
                                     since: 0
@@ -185,10 +196,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         $scope.resetPredicates();
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
         $scope.adminCurrent = $scope.adminPages[0];
-        $scope.print = function ()
-        {
-            console.log(JSON.stringify($scope.predicates));
-        };
         $scope.searchStudent = function ()
         {
             $scope.predicates.education.skillsMerged =

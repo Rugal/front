@@ -12,7 +12,8 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                     majors: [],
                     universities: [],
                     companies: [],
-                    students: []
+                    students: [],
+                    cities: []
                 };
         $scope.loadAllCompanies = function ()
         {
@@ -90,6 +91,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
     }]);
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
 
+        $scope.company = null;
         $scope.predicates = null;
         $scope.print = function ()
         {
@@ -164,7 +166,13 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.resetPredicates = function ()
         {
-            default_predicates =
+            var default_company =
+                    {
+                        basic: {name: null, note: null},
+                        location: {cid: 0, email: null, website: null, postal: null, address: null},
+                        contact: {firstName: null, lastName: null, position: null, telephone: null}
+                    };
+            var default_predicates =
                     {
                         personal:
                                 {
@@ -191,6 +199,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                     since: 0
                                 }
                     };
+            $scope.company = default_company;
             $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
             $scope.preload.students = [];
             angular.element('#work-experience-tab a').trigger('click');
@@ -198,7 +207,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.resetPredicates();
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
-        $scope.adminCurrent = $scope.adminPages[0];
+        $scope.adminCurrent = $scope.adminPages[1];
         $scope.searchStudent = function ()
         {
             $scope.predicates.education.skillsMerged =

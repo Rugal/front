@@ -37,43 +37,17 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a href="#immigration_status_row">Immigration Status</a></li>
-                    <li class="tab col s3" ><a  href="#nationality_row" >Nationality</a></li>
-                    <li class="tab col s3"><a href="#gender_row">Gender</a></li>  
+                    <li class="tab col s3"><a href="#company_name_row">Basic</a></li>
                 </ul>
             </div>
-            <div id="nationality_row" class="col s12">
-                <label>Country select</label>
-                <select class="center" id="nationality_row_options" ng-model="predicates.personal.nationality" watch material-select >
-                    <option value="0">Any</option>
-                    <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
-                </select>
-            </div>
-            <div id="immigration_status_row" class="col s12 lower-center" >
-                <ul >
-                    <li>
-                        <input name="status" type="radio" id="is1" ng-model="predicates.personal.status" value="-1"/><label for="is1">International Student</label>   
-                    </li>
-                    <li>
-                        <input name="status" type="radio" id="is2" ng-model="predicates.personal.status" value="1"/><label for="is2">Permanent resident/Canadian</label>
-                    </li>
-                    <li>
-                        <input name="status" type="radio" id="is3" ng-model="predicates.personal.status" value="0" checked/><label for="is3">Any</label>
-                    </li>
-                </ul>
-            </div>
-            <div id="gender_row" class="col s12 lower-center">
-                <ul >
-                    <li>
-                        <input name="gender" type="radio" ng-model="predicates.personal.gender" value="1" id="g1"/><label for="g1">Male</label>   
-                    </li>
-                    <li>
-                        <input name="gender" type="radio" ng-model="predicates.personal.gender" value="-1" id="g2"/><label for="g2">Female</label>
-                    </li>
-                    <li>
-                        <input name="gender" type="radio" ng-model="predicates.personal.gender" value="0" id="g3" checked/><label for="g3">Any</label>
-                    </li>
-                </ul>
+            <div id="company_name_row" class="col s12">
+                <div class="input-field col s4">
+                    <input placeholder="Company Name" required type="text" ng-model="company.basic.name">
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea" ng-model="company.basic.note"></textarea>
+                    <label for="textarea1">Note</label>
+                </div>
             </div>
         </div>
     </div>
@@ -86,51 +60,28 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a href="#degree_row">Degree</a></li>
-                    <li class="tab col s3"><a href="#skill_row">Skill</a></li>  
-                    <li class="tab col s3"><a href="#certificate_row">Certificate</a></li>  
+                    <li class="tab col s3"><a href="#address_row">Location</a></li>
                 </ul>
             </div>
-            <div id="degree_row" class="input-field col s12">
-                <div class="input-field col s12">
-                    <label>Country of Bachelor Degree</label>
-                    <select class="center" ng-model="predicates.education.degrees[0]" watch material-select >
-                        <option value="0">Any</option>
-                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
-                    </select>
+            <div id="address_row" class="input-field col s12">
+                <div class="input-field col s6">
+                    <label>City</label>
+                    <select ng-options="c.cid as c.name for c in preload.cities"
+                            ng-model="company.location.cid" material-select watch></select>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="postal" required type="text" ng-model="company.location.postal">
                 </div>
                 <div class="input-field col s12">
-                    <label>Country of Master Degree</label>
-                    <select class="center" ng-model="predicates.education.degrees[1]" watch material-select >
-                        <option value="0">Any</option>
-                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
-                    </select>
+                    <input placeholder="Address" required type="text" ng-model="company.location.address">
                 </div>
-                <div class="input-field col s12">
-                    <label>Country of PHD Degree</label>
-                    <select class="center" ng-model="predicates.education.degrees[2]" watch material-select >
-                        <option value="0">Any</option>
-                        <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
-                    </select>
+                <div class="input-field col s6">
+                    <input placeholder="email" required type="text" ng-model="company.location.email">
                 </div>
-            </div>
-            <div id="skill_row" class="input-field col s12">
-                <div class="input-field col s12">
-                    <select  ng-options="s.sid as s.name for s in preload.skills[0]" ng-model="predicates.education.skills[0]" multiple  material-select watch></select>
-                    <label>Techniques</label>
+                <div class="input-field col s6">
+                    <input placeholder="website" required type="text" ng-model="company.location.website">
                 </div>
-                <div class="input-field col s12">
-                    <select  ng-options="s.sid as s.name for s in preload.skills[1]" ng-model="predicates.education.skills[1]" multiple  material-select watch></select>
-                    <label>CMS</label>
-                </div>
-                <div class="input-field col s12">
-                    <select  ng-options="s.sid as s.name for s in preload.skills[2]" ng-model="predicates.education.skills[2]" multiple  material-select watch></select>
-                    <label>Operating System</label>
-                </div>
-            </div>
-            <div id="certificate_row" class="input-field col s12">
-                <select  ng-options="m.mid as m.name for m in preload.certifications" ng-model="predicates.education.certifications" multiple  material-select watch></select>
-                <label>Certification owned</label>
+
             </div>
         </div>
     </div>
@@ -183,29 +134,29 @@
 </div>
 <script>
     $(document).ready(function () {
-    $('#wrapper .modal-trigger').leanModal();
-    $('ul.tabs').tabs();
-    $('select').material_select();
-    $("#w1").click(function () {
-        $("#company-country-tab").addClass('disabled');
-        $("#time-tab").addClass('disabled');
+        $('#wrapper .modal-trigger').leanModal();
+        $('ul.tabs').tabs();
+        $('select').material_select();
+        $("#w1").click(function () {
+            $("#company-country-tab").addClass('disabled');
+            $("#time-tab").addClass('disabled');
+        });
+        $("#w3").click(function () {
+            $("#company-country-tab").addClass('disabled');
+            $("#time-tab").removeClass('disabled');
+        });
+        $("#w2").click(function () {
+            $("#company-country-tab").removeClass('disabled');
+            $("#time-tab").removeClass('disabled');
+        });
     });
-    $("#w3").click(function () {
-        $("#company-country-tab").addClass('disabled');
-        $("#time-tab").removeClass('disabled');
+    $('.dropdown-button').dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrain_width: false, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
-    $("#w2").click(function () {
-        $("#company-country-tab").removeClass('disabled');
-        $("#time-tab").removeClass('disabled');
-    });
-});
-$('.dropdown-button').dropdown({
-    inDuration: 300,
-    outDuration: 225,
-    constrain_width: false, // Does not change width of dropdown to that of the activator
-    hover: true, // Activate on hover
-    gutter: 0, // Spacing from edge
-    belowOrigin: false, // Displays dropdown below the button
-    alignment: 'left' // Displays dropdown with edge aligned to the left of button
-});
 </script>

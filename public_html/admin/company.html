@@ -27,7 +27,7 @@
 </div>
 <!-- /#wrapper -->
 <div style="position: absolute; left:220px; width: 80%">
-    <table ng-table="" class="highlight table " show-filter="true">
+    <table ng-table="" class="highlight table " >
         <tr ng-repeat="company in preload.companies track by company.cid">
             <td data-title="'CID'"   sortable="'cid'"><a ng-click="getCompany(company.cid)" >{{company.cid}}</a></td>
             <td data-title="'Name'" filter="{ name :'text'}">{{company.name}}</td>

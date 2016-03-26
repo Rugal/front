@@ -13,8 +13,31 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                     universities: [],
                     companies: [],
                     students: [],
-                    cities: []
+                    cities: [],
+                    types: []
                 };
+        $scope.loadAllTypes = function ()
+        {
+            if (0 === $scope.preload.types.length)
+            {
+                $http({method: 'GET', url: $scope.HOST + '/company/type/all'})
+                        .then(function (response)
+                        {
+                            $scope.preload.types = response.data.data;
+                        }, function (response) {});
+            }
+        };
+        $scope.loadAllCities = function ()
+        {
+            if (0 === $scope.preload.cities.length)
+            {
+                $http({method: 'GET', url: $scope.HOST + '/city/all'})
+                        .then(function (response)
+                        {
+                            $scope.preload.cities = response.data.data;
+                        }, function (response) {});
+            }
+        };
         $scope.loadAllCompanies = function ()
         {
             if (0 === $scope.preload.companies.length)
@@ -93,9 +116,9 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
 
         $scope.company = null;
         $scope.predicates = null;
-        $scope.print = function ()
+        $scope.print = function (obj)
         {
-            console.log(JSON.stringify($scope.predicates));
+            console.log(JSON.stringify(obj));
         };
         $scope.getStudent = function (sid)
         {
@@ -168,9 +191,9 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         {
             var default_company =
                     {
-                        basic: {name: null, note: null},
-                        location: {cid: 0, email: null, website: null, postal: null, address: null},
-                        contact: {firstName: null, lastName: null, position: null, telephone: null}
+                        name: null, address: null, note: null, postal: null,
+                        city: {cid: 0}, email: null, website: null, telephone: null,
+                        firstName: null, lastName: null, position: null, companyType: {cid: 0}
                     };
             var default_predicates =
                     {
@@ -208,6 +231,14 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         $scope.resetPredicates();
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
         $scope.adminCurrent = $scope.adminPages[1];
+        $scope.searchCompany = function ()
+        {
+            $http({method: 'PUT', url: $scope.HOST + '/admin/company',
+                headers: {'Content-Type': 'application/json'}, data: $scope.company})
+                    .then(function (response) {
+                        $scope.preload.company = response.data.data;
+                    }, function (response) {});
+        };
         $scope.searchStudent = function ()
         {
             $scope.predicates.education.skillsMerged =

@@ -6,22 +6,18 @@
                 <a class="center">Company</a>
             </li>
             <li>
-                <button data-target="company-basic-modal" class="modal-trigger btn waves-effect waves-light" ng-click="">Basic</button>
-            </li>
-            <li>
-                <button data-target="company-location-modal" class="modal-trigger btn waves-effect waves-light" ng-click="">Location</button>
-            </li>
-            <li>
-                <button data-target="company-contact-modal" class="modal-trigger btn waves-effect waves-light" ng-click="" >Contact</button>
+                <button data-target="company-basic-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllTypes();loadAllCities();">
+                    Basic
+                </button>
             </li>
             <li class="divider" style="height: 15px;"></li>
             <li>
-                <button class="btn waves-effect waves-light red" ng-click="print(); resetPredicates();">Reset
+                <button class="btn waves-effect waves-light red" ng-click="print(company); resetPredicates();">Reset
                     <i class="material-icons right">settings_backup_restore</i>
                 </button>
             </li>
             <li>
-                <button class="btn waves-effect waves-light blue" ng-click="submit();">Search
+                <button class="btn waves-effect waves-light blue" ng-click="searchCompany();">Search
                     <i class="material-icons right">thumb_up</i>
                 </button>
             </li>
@@ -37,96 +33,25 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3"><a href="#company_name_row">Basic</a></li>
+                    <li class="tab col s3"><a href="#company_name_row" >Basic</a></li>
                 </ul>
             </div>
             <div id="company_name_row" class="col s12">
-                <div class="input-field col s4">
-                    <input placeholder="Company Name" required type="text" ng-model="company.basic.name">
+                <div class="input-field col s6">
+                    <input placeholder="Company Name" required type="text" ng-model="company.name">
+                </div>
+                <div class="input-field col s6">
+                    <label>Company Type</label>
+                    <select ng-options="c.cid as c.name for c in preload.types"
+                            ng-model="company.companyType.cid" material-select watch></select>
                 </div>
                 <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="company.basic.note"></textarea>
-                    <label for="textarea1">Note</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
-    </div>
-</div>
-<div id="company-location-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#address_row">Location</a></li>
-                </ul>
-            </div>
-            <div id="address_row" class="input-field col s12">
-                <div class="input-field col s6">
                     <label>City</label>
                     <select ng-options="c.cid as c.name for c in preload.cities"
-                            ng-model="company.location.cid" material-select watch></select>
+                            ng-model="company.city.cid" material-select watch></select>
                 </div>
-                <div class="input-field col s6">
-                    <input placeholder="postal" required type="text" ng-model="company.location.postal">
-                </div>
-                <div class="input-field col s12">
-                    <input placeholder="Address" required type="text" ng-model="company.location.address">
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="email" required type="text" ng-model="company.location.email">
-                </div>
-                <div class="input-field col s6">
-                    <input placeholder="website" required type="text" ng-model="company.location.website">
-                </div>
-
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" >Ok</a>
-    </div>
-</div>
-<div id="company-contact-modal" class="modal modal-fixed-footer">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li id="work-experience-tab" class="tab col s3"><a  class="active" href="#work-experience-row">Work Experience</a></li>
-                    <li id="company-country-tab" class="tab col s3 disabled"><a href="#company-country-row">Country</a></li>
-                    <li id="time-tab" class="tab col s3 disabled"><a href="#time-row">Time</a></li>
-                </ul>
-            </div>
-            <div id="work-experience-row" class="col s12 lower-center">
-                <ul>
-                    <li>
-                        <input id="w1" name="work" type="radio" ng-model="predicates.experience.work" value="0"/><label for="w1">Any</label>   
-                    </li>
-                    <li>
-                        <input id="w2" name="work" type="radio"  ng-model="predicates.experience.work" value="1"/><label for="w2">Employed</label>
-                    </li>
-                    <li>
-                        <input id="w3" name="work" type="radio" ng-model="predicates.experience.work" value="-1"/><label for="w3">Unemployed</label>
-                    </li>
-                </ul>
-            </div>
-            <div id="company-country-row" class="col s12">
-                <label>Country select</label>
-                <select class="center"  ng-model="predicates.experience.companyCountry" watch material-select >
-                    <option value="0">Any</option>
-                    <option ng-repeat="country in preload.allCountries" value="{{country.cid}}" >{{country.name}}</option>
-                </select>
-            </div>
-            <div id="time-row" class="col s12">
-                <label>Since</label>
-                <p class="range-field">
-                    <input type="range" ng-model="predicates.experience.since" min="1990" max="2016" />
-                </p>
-            </div>
-        </div>
-
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>

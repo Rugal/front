@@ -40,14 +40,11 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         };
         $scope.loadAllCompanies = function ()
         {
-            if (0 === $scope.preload.companies.length)
-            {
-                $http({method: 'GET', url: $scope.HOST + '/company/all'})
-                        .then(function (response)
-                        {
-                            $scope.preload.companies = response.data.data;
-                        }, function (response) {});
-            }
+            $http({method: 'GET', url: $scope.HOST + '/company/all'})
+                    .then(function (response)
+                    {
+                        $scope.preload.companies = response.data.data;
+                    }, function (response) {});
         };
         $scope.loadAllSkills = function ()
         {
@@ -114,11 +111,78 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
     }]);
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
 
-        $scope.company = null;
+        $scope.companyPredicate = null;
         $scope.predicates = null;
         $scope.print = function (obj)
         {
             console.log(JSON.stringify(obj));
+        };
+        $scope.getCompany = function (cid)
+        {
+            var getSkillsByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/skillset?student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                            for (var i = 0; i < 3; i++)
+                            {
+                                $scope.predicates.education.skills[i] = get;
+                            }
+                        }, function (response) {});
+            };
+            var getEducationsByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/education?type=major&student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                            for (var i = 0; i < get.length; i++)
+                            {
+                                $scope.predicates.education.deg[i].uid = get[i].university.uid;
+                                $scope.predicates.education.deg[i].mid = get[i].major.mid;
+                                $scope.predicates.education.deg[i].from = get[i].startDate;
+                                $scope.predicates.education.deg[i].to = get[i].endDate;
+                                $scope.predicates.education.deg[i].gpa = get[i].gpa;
+                            }
+                            $scope.print();
+                        }, function (response) {});
+            };
+            var getCertificationsByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/education?type=certification&student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                            $scope.predicates.education.certifications = get;
+                        }, function (response) {});
+            };
+            var getExperienceByStudent = function (sid) {
+                $http({method: 'GET', url: $scope.HOST + '/experience?student=' + sid})
+                        .then(function (response) {
+                            var get = response.data.data;
+                            for (var i = 0; i < get.length; i++)
+                            {
+                                $scope.predicates.experience.exp[i].com = get[i].company.cid;
+                                $scope.predicates.experience.exp[i].from = get[i].startDate;
+                                $scope.predicates.experience.exp[i].to = get[i].endDate;
+                            }
+                        }, function (response) {});
+            };
+            $http({method: 'GET', url: $scope.HOST + '/student/' + sid})
+                    .then(function (response) {
+                        var get = response.data.data;
+                        $scope.predicates.personal.availability = get.availability;
+                        $scope.predicates.personal.nationality = get.country.cid;
+                        $scope.predicates.personal.status = get.status;
+                        $scope.predicates.personal.gender = get.gender;
+                        $scope.predicates.personal.firstName = get.firstName;
+                        $scope.predicates.personal.middleName = get.middleName;
+                        $scope.predicates.personal.lastName = get.lastName;
+                        $("#genderRadioBox").prop('checked', $scope.predicates.personal.gender);
+                        $("#statusRadioBox").prop('checked', $scope.predicates.personal.status);
+                        $("#availabilityRadioBox").prop('checked', $scope.predicates.personal.availability);
+                        getSkillsByStudent(get.sid);
+                        getEducationsByStudent(get.sid);
+                        getCertificationsByStudent(get.sid);
+                        getExperienceByStudent(get.sid);
+                        $scope.print();
+                        $('#add-student-modal').openModal();
+                    }, function (response) {});
         };
         $scope.getStudent = function (sid)
         {
@@ -222,7 +286,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                                     since: 0
                                 }
                     };
-            $scope.company = default_company;
+            $scope.companyPredicate = JSON.parse(JSON.stringify(default_company));
             $scope.predicates = JSON.parse(JSON.stringify(default_predicates));
             $scope.preload.students = [];
             angular.element('#work-experience-tab a').trigger('click');
@@ -234,9 +298,9 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         $scope.searchCompany = function ()
         {
             $http({method: 'PUT', url: $scope.HOST + '/admin/company',
-                headers: {'Content-Type': 'application/json'}, data: $scope.company})
+                headers: {'Content-Type': 'application/json'}, data: $scope.companyPredicate})
                     .then(function (response) {
-                        $scope.preload.company = response.data.data;
+                        $scope.preload.companies = response.data.data;
                     }, function (response) {});
         };
         $scope.searchStudent = function ()

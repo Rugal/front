@@ -26,7 +26,17 @@
     <!-- /#sidebar-wrapper -->
 </div>
 <!-- /#wrapper -->
-
+<div style="position: absolute; left:220px; width: 80%">
+    <table ng-table="" class="highlight table " show-filter="true">
+        <tr ng-repeat="company in preload.companies track by company.cid">
+            <td data-title="'CID'"   sortable="'cid'"><a ng-click="getCompany(company.cid)" >{{company.cid}}</a></td>
+            <td data-title="'Name'" filter="{ name :'text'}">{{company.name}}</td>
+            <td data-title="'City'" filter="{ name: 'text'}">{{company.city.name}}</td>
+            <td data-title="'Type'" filter="{ name: 'text'}">{{company.companyType.name}}</td>
+            <td><button class="red btn btn-small" ng-click="deleteCompany(company.cid)">  <i class="material-icons">not_interested</i> </button></td>
+        </tr>
+    </table>
+</div>
 <!-- Modal Structure -->
 <div id="company-basic-modal" class="modal modal-fixed-footer">
     <div class="modal-content">

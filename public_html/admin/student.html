@@ -40,6 +40,7 @@
             <td data-title="'Gender'"  sortable="'gender'">{{student.gender === true ? "Male" : "Female"}}</td>
             <td data-title="'Status'"  sortable="'status'">{{student.status === true ? "PR/Canadian" : "International Student"}}</td>
             <td data-title="'Availability'"  sortable="'availability'">{{student.availability === true ? "Seeking" : "Employed"}}</td>
+            <td><button class="red btn btn-small" ng-click="deleteStudent(student.sid)">  <i class="material-icons">not_interested</i> </button></td>
         </tr>
     </table>
 </div>

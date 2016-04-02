@@ -33,7 +33,7 @@
             <td data-title="'Name'" filter="{ name :'text'}">{{company.name}}</td>
             <td data-title="'City'" filter="{ name: 'text'}">{{company.city.name}}</td>
             <td data-title="'Type'" filter="{ name: 'text'}">{{company.companyType.name}}</td>
-            <td><button class="red btn btn-small" ng-click="deleteCompany(company.cid)">  <i class="material-icons">not_interested</i> </button></td>
+            <td><button class="red btn btn-small" ng-click="deleteCompany(company.cid);searchCompany()">  <i class="material-icons">not_interested</i> </button></td>
         </tr>
     </table>
 </div>

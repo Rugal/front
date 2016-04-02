@@ -187,7 +187,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                 $scope.companyPredicate = JSON.parse(JSON.stringify(default_company));
                 $scope.preload.companies = [];
             };
-
             var resetStudent = function ()
             {
                 var default_predicates = {
@@ -210,7 +209,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                             },
                     experience:
                             {
-                                exp: [{}, {}, {}],
+                                exp: [],
                                 work: 0,
                                 companyCountry: 0,
                                 since: 0

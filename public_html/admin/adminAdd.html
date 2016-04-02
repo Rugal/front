@@ -164,7 +164,6 @@
                         </div>
                     </li>
                 </ul>
-
             </div>
             <div id="student_skill_row" class="input-field col s12">
                 <div class="input-field col s12">
@@ -256,16 +255,64 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3 active"><a href="#degree_row" >Basic</a></li>
-                    <li class="tab col s3"><a href="#degree_row">Contact</a></li>
-                    <li class="tab col s3"><a href="#skill_row">Misc</a></li>
+                    <li class="tab col s3 active"><a href="#company_basic_tab" >Basic</a></li>
+                    <li class="tab col s3"><a href="#company_contact_tab">Contact</a></li>
+                    <li class="tab col s3"><a href="#company_misc_tab">Misc</a></li>
                 </ul>
+            </div>
+            <div id="company_basic_tab" class="col s12">
+                <div class="input-field col s12">
+                    <input placeholder="Company Name" required type="text" ng-model="companyPredicates.name">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Address" required type="text" ng-model="companyPredicates.address">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Postal code" required type="text" ng-model="companyPredicates.postal">
+                </div>
+                <div class="input-field col s6">
+                    <label>City select</label>
+                    <select ng-model="companyPredicate.city.cid" required watch material-select>
+                        <option ng-repeat="city in preload.cities" value="{{city.cid}}" >{{city.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <label>Company Type</label>
+                    <select ng-options="c.cid as c.name for c in preload.types"
+                            ng-model="company.companyType.cid" material-select watch></select>
+                </div>
+            </div>
+            <div id="company_contact_tab" class="col s12">
+                <div class="input-field col s6">
+                    <input placeholder="First Name" required type="text" ng-model="companyPredicates.firstName">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Last Name" required type="text" ng-model="companyPredicates.lastName">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Email" required type="text" ng-model="companyPredicates.email">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Telephone" required type="text" ng-model="companyPredicates.telephone">
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Position" required type="text" ng-model="companyPredicates.position">
+                </div>
+            </div>
+            <div id="company_misc_tab" class="col s12">
+                <div class="input-field col s12">
+                    <input placeholder="Website" required type="text" ng-model="companyPredicates.website">
+                </div>
+                <div class="input-field col s12">
+                    <textarea id="textarea2" class="materialize-textarea" ng-model="companyPredicates.note"></textarea>
+                    <label for="textarea2">Note</label>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat" ng-click="resetPredicates();">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addCompany();">Submit</a>
     </div>
 </div>
 <div id="add-skill-modal" class="modal modal-fixed-footer">

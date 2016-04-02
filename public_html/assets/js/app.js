@@ -18,25 +18,19 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
                 };
         $scope.loadAllTypes = function ()
         {
-            if (0 === $scope.preload.types.length)
-            {
-                $http({method: 'GET', url: $scope.HOST + '/company/type/all'})
-                        .then(function (response)
-                        {
-                            $scope.preload.types = response.data.data;
-                        }, function (response) {});
-            }
+            $http({method: 'GET', url: $scope.HOST + '/company/type/all'})
+                    .then(function (response)
+                    {
+                        $scope.preload.types = response.data.data;
+                    }, function (response) {});
         };
         $scope.loadAllCities = function ()
         {
-            if (0 === $scope.preload.cities.length)
-            {
-                $http({method: 'GET', url: $scope.HOST + '/city/all'})
-                        .then(function (response)
-                        {
-                            $scope.preload.cities = response.data.data;
-                        }, function (response) {});
-            }
+            $http({method: 'GET', url: $scope.HOST + '/city/all'})
+                    .then(function (response)
+                    {
+                        $scope.preload.cities = response.data.data;
+                    }, function (response) {});
         };
         $scope.loadAllCompanies = function ()
         {
@@ -48,10 +42,6 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         };
         $scope.loadAllSkills = function ()
         {
-            if (0 !== $scope.preload.skills.length)
-            {
-                return;
-            }
             loadSkills = function (stid)
             {
                 $http({method: 'GET', url: $scope.HOST + '/skilltype/' + stid + '/skill'})
@@ -66,47 +56,35 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         };
         $scope.loadAllUniversities = function ()
         {
-            if (0 === $scope.preload.universities.length)
-            {
-                $http({method: 'GET', url: $scope.HOST + '/university/all'})
-                        .then(function (response)
-                        {
-                            $scope.preload.universities = response.data.data;
-                        }, function (response) {});
-            }
+            $http({method: 'GET', url: $scope.HOST + '/university/all'})
+                    .then(function (response)
+                    {
+                        $scope.preload.universities = response.data.data;
+                    }, function (response) {});
         };
         $scope.loadAllMajors = function ()
         {
-            if (0 === $scope.preload.majors.length)
-            {
-                $http({method: 'GET', url: $scope.HOST + '/major?type=major'})
-                        .then(function (response)
-                        {
-                            $scope.preload.majors = response.data.data;
-                        }, function (response) {});
-            }
+            $http({method: 'GET', url: $scope.HOST + '/major?type=major'})
+                    .then(function (response)
+                    {
+                        $scope.preload.majors = response.data.data;
+                    }, function (response) {});
         };
         $scope.loadAllCertifications = function ()
         {
-            if (0 === $scope.preload.certifications.length)
-            {
-                $http({method: 'GET', url: $scope.HOST + '/major?type=certification'})
-                        .then(function (response)
-                        {
-                            $scope.preload.certifications = response.data.data;
-                        }, function (response) {});
-            }
+            $http({method: 'GET', url: $scope.HOST + '/major?type=certification'})
+                    .then(function (response)
+                    {
+                        $scope.preload.certifications = response.data.data;
+                    }, function (response) {});
         };
         $scope.loadAllCountries = function ()
         {
-            if (0 === $scope.preload.allCountries.length)
-            {
-                $http({method: 'GET', url: $scope.HOST + '/country/all'})
-                        .then(function (response)
-                        {
-                            $scope.preload.allCountries = response.data.data;
-                        }, function (response) {});
-            }
+            $http({method: 'GET', url: $scope.HOST + '/country/all'})
+                    .then(function (response)
+                    {
+                        $scope.preload.allCountries = response.data.data;
+                    }, function (response) {});
         };
     }]);
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
@@ -315,6 +293,13 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                         $scope.preload.students = response.data.data;
                     }, function (response) {});
         };
+        $scope.deleteStudent = function (sid)
+        {
+            $http({method: 'DELETE', url: $scope.HOST + '/student/' + sid})
+                    .then(function (response) {
+//                        $scope.preload.students = response.data.data;
+                    }, function (response) {});
+        };
         $scope.genderRadioBox = function ()
         {
             $scope.predicates.personal.gender = $("#genderRadioBox").prop('checked') ? 1 : 0;
@@ -341,6 +326,12 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             }
             $scope.print();
             $http({method: 'POST', url: $scope.HOST + '/admin/student', data: $scope.predicates})
+                    .then(function (response) {}, function (response) {});
+        };
+
+        $scope.addCompany = function ()
+        {
+            $http({method: 'POST', url: $scope.HOST + '/admin/company', data: $scope.companyPredicate})
                     .then(function (response) {}, function (response) {});
         };
     }]);

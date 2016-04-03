@@ -3,18 +3,17 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         $scope.HOST = 'http://localhost:8080';
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
         $scope.current = $scope.pages[2];
-        $scope.preload =
-                {
-                    certifications: [],
-                    allCountries: [],
-                    skills: [],
-                    majors: [],
-                    universities: [],
-                    companies: [],
-                    students: [],
-                    cities: [],
-                    types: []
-                };
+        $scope.preload = {
+            types: [],
+            certifications: [],
+            allCountries: [],
+            skills: [],
+            majors: [],
+            universities: [],
+            companies: [],
+            students: [],
+            cities: []
+        };
         $scope.loadAllTypes = function ()
         {
             $http({method: 'GET', url: $scope.HOST + '/company/type/all'})
@@ -228,6 +227,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         $scope.adminCurrent = $scope.adminPages[1];
         $scope.searchCompany = function ()
         {
+            $scope.print($scope.companyPredicate);
             $http({method: 'PUT', url: $scope.HOST + '/admin/company',
                 headers: {'Content-Type': 'application/json'}, data: $scope.companyPredicate})
                     .then(function (response) {

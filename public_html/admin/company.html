@@ -48,17 +48,17 @@
             </div>
             <div id="company_name_row" class="col s12">
                 <div class="input-field col s6">
-                    <input placeholder="Company Name" required type="text" ng-model="company.name">
+                    <label>City</label>
+                    <!--                    <select ng-options="c.cid as c.name for c in preload.cities"
+                                                ng-model="companyPredicate.city.cid" material-select watch></select>-->
+                    <select ng-model="companyPredicate.city.cid" watch material-select>
+                        <option ng-repeat="c in preload.cities" value="{{c.cid}}" >{{c.name}}</option>
+                    </select>
                 </div>
                 <div class="input-field col s6">
                     <label>Company Type</label>
-                    <select ng-options="c.cid as c.name for c in preload.types"
-                            ng-model="company.companyType.cid" material-select watch></select>
-                </div>
-                <div class="input-field col s12">
-                    <label>City</label>
-                    <select ng-options="c.cid as c.name for c in preload.cities"
-                            ng-model="company.city.cid" material-select watch></select>
+                    <select ng-options="ct.cid as ct.name for ct in preload.types"
+                            ng-model="companyPredicate.companyType.cid" material-select watch></select>
                 </div>
             </div>
         </div>

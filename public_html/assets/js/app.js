@@ -225,7 +225,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.resetPredicates();
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
-        $scope.adminCurrent = $scope.adminPages[1];
+        $scope.adminCurrent = $scope.adminPages[2];
         $scope.searchCompany = function ()
         {
             $scope.print($scope.companyPredicate);

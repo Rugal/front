@@ -1,0 +1,104 @@
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a class="center">Job</a>
+            </li>
+            <li>
+                <button data-target="job-basic-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllTypes();loadAllCities();">
+                    Basic
+                </button>
+            </li>
+            <li>
+                <button data-target="job-requirement-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllTypes();loadAllCities();">
+                    Requirement
+                </button>
+            </li>
+            <li class="divider" style="height: 15px;"></li>
+            <li>
+                <button class="btn waves-effect waves-light red" ng-click="print(jobPredicate); resetPredicates();">Reset
+                    <i class="material-icons right">settings_backup_restore</i>
+                </button>
+            </li>
+            <li>
+                <button class="btn waves-effect waves-light blue" ng-click="searchJob();">Search
+                    <i class="material-icons right">thumb_up</i>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+</div>
+<!-- /#wrapper -->
+<div style="position: absolute; left:220px; width: 80%">
+    <table ng-table="" class="highlight table " >
+        <tr ng-repeat="job in preload.jobs track by job.jid">
+            <td data-title="'JID'"   sortable="'jid'"><a ng-click="getJob(job.jid)" >{{job.jid}}</a></td>
+            <td data-title="'Job Group'" filter="{ name :'text'}">{{job.jobGroup.name}}</td>
+            <td data-title="'Company'" filter="{ name :'text'}">{{job.company.name}}</td>
+            <td data-title="'Company Type'" filter="{ name: 'text'}">{{job.company.companyType.name}}</td>
+            <td data-title="'City'" filter="{ name: 'text'}">{{job.company.city.name}}</td>
+            <td data-title="'Salary'" filter="{ name: 'text'}">{{job.salary}}</td>
+            <td><button class="red btn btn-small" ng-click="deleteJob(job.jid);searchJob()">  <i class="material-icons">not_interested</i> </button></td>
+        </tr>
+    </table>
+</div>
+<!-- Modal Structure -->
+<div id="job-basic-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s3"><a href="#company_name_row" >Basic</a></li>
+                </ul>
+            </div>
+            <div id="company_name_row" class="col s12">
+                <div class="input-field col s6">
+                    <label>City</label>
+                    <!--                    <select ng-options="c.cid as c.name for c in preload.cities"
+                                                ng-model="companyPredicate.city.cid" material-select watch></select>-->
+                    <select ng-model="companyPredicate.city.cid" watch material-select>
+                        <option ng-repeat="c in preload.cities" value="{{c.cid}}" >{{c.name}}</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <label>Company Type</label>
+                    <select ng-options="ct.cid as ct.name for ct in preload.types"
+                            ng-model="companyPredicate.companyType.cid" material-select watch></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Ok</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#wrapper .modal-trigger').leanModal();
+        $('ul.tabs').tabs();
+        $('select').material_select();
+        $("#w1").click(function () {
+            $("#company-country-tab").addClass('disabled');
+            $("#time-tab").addClass('disabled');
+        });
+        $("#w3").click(function () {
+            $("#company-country-tab").addClass('disabled');
+            $("#time-tab").removeClass('disabled');
+        });
+        $("#w2").click(function () {
+            $("#company-country-tab").removeClass('disabled');
+            $("#time-tab").removeClass('disabled');
+        });
+    });
+    $('.dropdown-button').dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrain_width: false, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    });
+</script>

@@ -98,6 +98,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             $http({method: 'GET', url: $scope.HOST + '/company/' + cid})
                     .then(function (response) {
                         $scope.companyPredicate = response.data.data;
+                        $scope.print($scope.companyPredicate);
                         $('#add-company-modal').openModal();
                     }, function (response) {});
         };

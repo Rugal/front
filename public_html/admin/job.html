@@ -6,7 +6,7 @@
                 <a class="center">Job</a>
             </li>
             <li>
-                <button data-target="job-basic-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllTypes();loadAllCities();">
+                <button data-target="job-basic-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllJobGroups();loadAllTypes();loadAllCities();">
                     Basic
                 </button>
             </li>
@@ -56,16 +56,25 @@
             <div id="company_name_row" class="col s12">
                 <div class="input-field col s6">
                     <label>City</label>
-                    <!--                    <select ng-options="c.cid as c.name for c in preload.cities"
-                                                ng-model="companyPredicate.city.cid" material-select watch></select>-->
-                    <select ng-model="companyPredicate.city.cid" watch material-select>
+                    <select ng-model="jobPredicate.company.city.cid" watch material-select>
                         <option ng-repeat="c in preload.cities" value="{{c.cid}}" >{{c.name}}</option>
                     </select>
                 </div>
                 <div class="input-field col s6">
                     <label>Company Type</label>
                     <select ng-options="ct.cid as ct.name for ct in preload.types"
-                            ng-model="companyPredicate.companyType.cid" material-select watch></select>
+                            ng-model="jobPredicate.company.companyType.cid" material-select watch></select>
+                </div>
+                <div class="input-field col s6">
+                    <label>Job Group</label>
+                    <select ng-options="jg.jgid as jg.name for jg in preload.jobGroups"
+                            ng-model="jobPredicate.jobGroup.jgid" material-select watch></select>
+                </div>
+                <div class="col s6">
+                    <label>Base salary/Month</label>
+                    <p class="range-field">
+                        <input type="range" ng-model="jobPredicates.salary" min="1000" max="20000" />
+                    </p>
                 </div>
             </div>
         </div>

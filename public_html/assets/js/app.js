@@ -12,7 +12,17 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
             universities: [],
             companies: [],
             students: [],
-            cities: []
+            cities: [],
+            jobGroups: [],
+            jobs: []
+        };
+        $scope.loadAllJobGroups = function ()
+        {
+            $http({method: 'GET', url: $scope.HOST + '/jobgroup/all'})
+                    .then(function (response)
+                    {
+                        $scope.preload.jobGroups = response.data.data;
+                    }, function (response) {});
         };
         $scope.loadAllTypes = function ()
         {
@@ -88,6 +98,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.companyPredicate = null;
+        $scope.jobPredicate = null;
         $scope.predicates = null;
         $scope.print = function (obj)
         {
@@ -177,6 +188,15 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.resetPredicates = function ()
         {
+            var resetJob = function ()
+            {
+                var default_job = {
+                    responsibility: null, salary: null, jobGroup: {jgid: 0}, requirements: [],
+                    company: {city: {cid: 0}, companyType: {cid: 0}}
+                };
+                $scope.jobPredicate = JSON.parse(JSON.stringify(default_job));
+                $scope.preload.jobs = [];
+            };
             var resetCompany = function ()
             {
                 var default_company = {

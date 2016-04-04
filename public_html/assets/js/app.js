@@ -96,7 +96,6 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         };
     }]);
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
-
         $scope.companyPredicate = null;
         $scope.jobPredicate = null;
         $scope.predicates = null;
@@ -116,6 +115,12 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         $scope.deleteCompany = function (cid)
         {
             $http({method: 'DELETE', url: $scope.HOST + '/company/' + cid})
+                    .then(function (response) {
+                    }, function (response) {});
+        };
+        $scope.deleteJob = function (jid)
+        {
+            $http({method: 'DELETE', url: $scope.HOST + '/job/' + jid})
                     .then(function (response) {
                     }, function (response) {});
         };

@@ -16,7 +16,8 @@
         <li><a data-target="add-skill-modal" class="modal-trigger btn-floating green"><i class="material-icons">settings_input_composite</i></a></li><!--skills-->
         <li><a data-target="add-city-modal" class="modal-trigger btn-floating blue"><i class="material-icons">room</i></a></li><!--city-->
         <li><a data-target="add-university-modal" class="modal-trigger btn-floating black"><i class="material-icons">supervisor_account</i></a></li> <!--university-->
-        <li><a data-target="add-job-modal" class="modal-trigger btn-floating purple"><i class="material-icons">android</i></a></li> <!--Job-->
+        <li><a data-target="add-job-modal" class="modal-trigger btn-floating purple" ng-click="loadAllSkills();loadAllJobGroups();">
+                <i class="material-icons">android</i></a></li> <!--Job-->
     </ul>
 </div>
 <div id="add-student-modal" class="modal modal-fixed-footer">
@@ -373,7 +374,7 @@
             <div class="col s12">
                 <ul class="tabs">
                     <li class="tab col s3 active"><a href="#add_job_basic_tab" ng-click="loadAllCompanies();">Basic</a></li>
-                    <li class="tab col s3"><a href="#add_job_requirement_tab">Requirement</a></li>
+                    <li class="tab col s3"><a href="#add_job_requirement_tab" ng-click="loadAllSkills();">Requirement</a></li>
                 </ul>
             </div>
         </div>

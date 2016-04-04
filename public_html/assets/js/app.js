@@ -108,7 +108,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             $http({method: 'GET', url: $scope.HOST + '/company/' + cid})
                     .then(function (response) {
                         $scope.companyPredicate = response.data.data;
-                        $scope.print($scope.companyPredicate);
                         $('#add-company-modal').openModal();
                     }, function (response) {});
         };
@@ -187,7 +186,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                         getEducationsByStudent(get.sid);
                         getCertificationsByStudent(get.sid);
                         getExperienceByStudent(get.sid);
-                        $scope.print();
                         $('#add-student-modal').openModal();
                     }, function (response) {});
         };
@@ -258,7 +256,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     $scope.jobPredicate.skills[0]
                     .concat($scope.jobPredicate.skills[1])
                     .concat($scope.jobPredicate.skills[2]);
-            $scope.print($scope.jobPredicate);
             $http({method: 'PUT', url: $scope.HOST + '/admin/job',
                 headers: {'Content-Type': 'application/json'}, data: $scope.jobPredicate})
                     .then(function (response) {
@@ -267,7 +264,6 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.searchCompany = function ()
         {
-            $scope.print($scope.companyPredicate);
             $http({method: 'PUT', url: $scope.HOST + '/admin/company',
                 headers: {'Content-Type': 'application/json'}, data: $scope.companyPredicate})
                     .then(function (response) {

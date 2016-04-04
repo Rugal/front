@@ -191,8 +191,8 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             var resetJob = function ()
             {
                 var default_job = {
-                    responsibility: null, salary: null, jobGroup: {jgid: 0}, requirements: [],
-                    company: {city: {cid: 0}, companyType: {cid: 0}}
+                    responsibility: null, salary: 1000, jobGroup: {jgid: 0}, requirements: [],
+                    company: {city: {cid: 0}, companyType: {cid: 0}}, skills: [[], [], []]
                 };
                 $scope.jobPredicate = JSON.parse(JSON.stringify(default_job));
                 $scope.preload.jobs = [];
@@ -240,12 +240,26 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             };
             resetCompany();
             resetStudent();
+            resetJob();
             angular.element('#work-experience-tab a').trigger('click');
             angular.element('#w1').trigger('click');
         };
         $scope.resetPredicates();
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
         $scope.adminCurrent = $scope.adminPages[2];
+        $scope.searchJob = function ()
+        {
+            $scope.jobPredicate.requirements =
+                    $scope.jobPredicate.skills[0]
+                    .concat($scope.jobPredicate.skills[1])
+                    .concat($scope.jobPredicate.skills[2]);
+            $scope.print($scope.jobPredicate);
+            $http({method: 'PUT', url: $scope.HOST + '/admin/job',
+                headers: {'Content-Type': 'application/json'}, data: $scope.jobPredicate})
+                    .then(function (response) {
+                        $scope.preload.jobs = response.data.data;
+                    }, function (response) {});
+        };
         $scope.searchCompany = function ()
         {
             $scope.print($scope.companyPredicate);

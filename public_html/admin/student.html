@@ -6,13 +6,16 @@
                 <a class="center">Student</a>
             </li>
             <li>
-                <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();">Personal</button>
+                <button data-target="personal-modal" class="modal-trigger btn waves-effect waves-light"
+                        ng-click="loadAllCountries();">Personal</button>
             </li>
             <li>
-                <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();loadAllCertifications(); loadAllSkills();">Education</button>
+                <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light"
+                        ng-click="loadAllCountries();loadAllCertifications(); loadAllSkills();">Education</button>
             </li>
             <li>
-                <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light" ng-click="loadAllCountries();" >Experience</button>
+                <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light"
+                        ng-click="loadAllCountries();" >Experience</button>
             </li>
             <li class="divider" style="height: 15px;"></li>
             <li>
@@ -131,15 +134,18 @@
             </div>
             <div id="skill_row" class="input-field col s12">
                 <div class="input-field col s12">
-                    <select  ng-options="s.sid as s.name for s in preload.skills[0]" ng-model="predicates.education.skills[0]" multiple  material-select watch></select>
+                    <select  ng-options="s.sid as s.name for s in preload.skills[0]"
+                             ng-model="predicates.education.skills[0]" multiple  material-select watch></select>
                     <label>Techniques</label>
                 </div>
                 <div class="input-field col s12">
-                    <select  ng-options="s.sid as s.name for s in preload.skills[1]" ng-model="predicates.education.skills[1]" multiple  material-select watch></select>
+                    <select  ng-options="s.sid as s.name for s in preload.skills[1]"
+                             ng-model="predicates.education.skills[1]" multiple  material-select watch></select>
                     <label>CMS</label>
                 </div>
                 <div class="input-field col s12">
-                    <select  ng-options="s.sid as s.name for s in preload.skills[2]" ng-model="predicates.education.skills[2]" multiple  material-select watch></select>
+                    <select  ng-options="s.sid as s.name for s in preload.skills[2]"
+                             ng-model="predicates.education.skills[2]" multiple  material-select watch></select>
                     <label>Operating System</label>
                 </div>
             </div>

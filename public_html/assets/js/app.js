@@ -321,7 +321,11 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             $http({method: 'POST', url: $scope.HOST + '/admin/student', data: $scope.predicates})
                     .then(function (response) {}, function (response) {});
         };
-
+        $scope.addJob = function ()
+        {
+            $http({method: 'POST', url: $scope.HOST + '/admin/job', data: $scope.jobPredicate})
+                    .then(function (response) {}, function (response) {});
+        };
         $scope.addCompany = function ()
         {
             $http({method: 'POST', url: $scope.HOST + '/admin/company', data: $scope.companyPredicate})

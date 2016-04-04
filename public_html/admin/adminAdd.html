@@ -395,10 +395,27 @@
                 </p>
             </div>
         </div>
+        <div id="add_job_requirement_tab" class="col s12">
+            <div class="input-field col s12">
+                <select  ng-options="s.sid as s.name for s in preload.skills[0]"
+                         ng-model="jobPredicate.skills[0]" multiple  material-select watch></select>
+                <label>Techniques</label>
+            </div>
+            <div class="input-field col s12">
+                <select  ng-options="s.sid as s.name for s in preload.skills[1]"
+                         ng-model="jobPredicate.skills[1]" multiple  material-select watch></select>
+                <label>CMS</label>
+            </div>
+            <div class="input-field col s12">
+                <select  ng-options="s.sid as s.name for s in preload.skills[2]"
+                         ng-model="jobPredicate.skills[2]" multiple  material-select watch></select>
+                <label>Operating System</label>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat" ng-click="resetPredicates();">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addJob()">Submit</a>
     </div>
 </div>
 <script>

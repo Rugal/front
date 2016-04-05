@@ -2,7 +2,7 @@ imsApp = angular.module('imsApp', ['ui.materialize', 'ngTable']);
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
         $scope.HOST = 'http://localhost:8080';
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
-        $scope.current = $scope.pages[2];
+        $scope.current = $scope.pages[0];
         $scope.preload = {
             types: [],
             certifications: [],
@@ -15,6 +15,10 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
             cities: [],
             jobGroups: [],
             jobs: []
+        };
+        $scope.switchPage = function (id)
+        {
+            $scope.current = $scope.pages[id];
         };
         $scope.loadAllJobGroups = function ()
         {

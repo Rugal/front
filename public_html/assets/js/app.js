@@ -2,8 +2,9 @@ imsApp = angular.module('imsApp', ['ui.materialize', 'ngTable']);
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
         $scope.HOST = 'http://localhost:8080';
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
-        $scope.current = $scope.pages[0];
+        $scope.current = $scope.pages[2];
         $scope.preload = {
+            skillTypes: [{stid: 1, name: "Technical"}, {name: "CMS", stid: 2}, {name: "Operating System", stid: 3}],
             types: [],
             certifications: [],
             allCountries: [],
@@ -102,6 +103,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
 imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http) {
         $scope.companyPredicate = null;
         $scope.jobPredicate = null;
+        $scope.skillPredicate = null;
         $scope.predicates = null;
         $scope.print = function (obj)
         {
@@ -195,6 +197,13 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.resetPredicates = function ()
         {
+            var resetSkill = function ()
+            {
+                var default_skill = {
+                    name: null, skillType: {stid: 1}
+                };
+                $scope.skillPredicate = JSON.parse(JSON.stringify(default_skill));
+            };
             var resetJob = function ()
             {
                 var default_job = {
@@ -248,6 +257,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             resetCompany();
             resetStudent();
             resetJob();
+            resetSkill();
             angular.element('#work-experience-tab a').trigger('click');
             angular.element('#w1').trigger('click');
         };
@@ -319,6 +329,11 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             }
             $scope.print();
             $http({method: 'POST', url: $scope.HOST + '/admin/student', data: $scope.predicates})
+                    .then(function (response) {}, function (response) {});
+        };
+        $scope.addSkill = function ()
+        {
+            $http({method: 'POST', url: $scope.HOST + '/skill', data: $scope.skillPredicate})
                     .then(function (response) {}, function (response) {});
         };
         $scope.addJob = function ()

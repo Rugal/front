@@ -322,16 +322,24 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s3 active"><a href="#degree_row">Skill</a></li>
-                    <li class="tab col s3"><a href="#degree_row">Skill Type</a></li>
-                    <li class="tab col s3"><a href="#skill_row">Misc</a></li>
+                    <li class="tab col s3 active"><a href="#add_skill_tab">Skill</a></li>
                 </ul>
+            </div>
+            <div id="add_skill_tab" class="col s12">
+                <div class="input-field col s12">
+                    <input placeholder="Skill Name" required type="text" ng-model="skillPredicate.name">
+                </div>
+                <div class="input-field col s12">
+                    <label>Skill Type</label>
+                    <select ng-options="st.stid as st.name for st in preload.skillTypes"
+                            ng-model="skillPredicate.skillType.stid" material-select watch></select>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="left modal-close waves-effect waves-green btn-flat ">Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat" ng-click="resetPredicates();">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addSkill();">Submit</a>
     </div>
 </div>
 <div id="add-city-modal" class="modal modal-fixed-footer">

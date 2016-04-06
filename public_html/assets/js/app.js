@@ -104,6 +104,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         $scope.companyPredicate = null;
         $scope.jobPredicate = null;
         $scope.skillPredicate = null;
+        $scope.cityPredicate = null;
         $scope.predicates = null;
         $scope.print = function (obj)
         {
@@ -197,6 +198,13 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.resetPredicates = function ()
         {
+            var resetCity = function ()
+            {
+                var default_city = {
+                    name: null, country: {cid: 1}
+                };
+                $scope.cityPredicate = JSON.parse(JSON.stringify(default_city));
+            };
             var resetSkill = function ()
             {
                 var default_skill = {
@@ -258,6 +266,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             resetStudent();
             resetJob();
             resetSkill();
+            resetCity();
             angular.element('#work-experience-tab a').trigger('click');
             angular.element('#w1').trigger('click');
         };
@@ -329,6 +338,11 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             }
             $scope.print();
             $http({method: 'POST', url: $scope.HOST + '/admin/student', data: $scope.predicates})
+                    .then(function (response) {}, function (response) {});
+        };
+        $scope.addCity = function ()
+        {
+            $http({method: 'POST', url: $scope.HOST + '/city', data: $scope.cityPredicate})
                     .then(function (response) {}, function (response) {});
         };
         $scope.addSkill = function ()

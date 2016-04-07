@@ -281,7 +281,7 @@
                 <div class="input-field col s6">
                     <label>Company Type</label>
                     <select ng-options="c.cid as c.name for c in preload.types"
-                            ng-model="company.companyType.cid" material-select watch></select>
+                            ng-model="companyPredicate.companyType.cid" material-select watch></select>
                 </div>
             </div>
             <div id="company_contact_tab" class="col s12">
@@ -313,7 +313,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="left modal-close waves-effect waves-green btn-flat" ng-click="resetPredicates();">Cancel</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat" ng-click="resetPredicates();searchCompany();">Cancel</a>
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addCompany();">Submit</a>
     </div>
 </div>
@@ -417,6 +417,10 @@
                     <input type="range" ng-model="jobPredicate.salary" min="1000" max="20000" />
                 </p>
             </div>
+            <div class="input-field col s12">
+                <textarea id="textarea3" class="materialize-textarea" ng-model="jobPredicate.requirements"></textarea>
+                <label for="textarea3">Note</label>
+            </div>
         </div>
         <div id="add_job_requirement_tab" class="col s12">
             <div class="input-field col s12">
@@ -437,7 +441,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="left modal-close waves-effect waves-green btn-flat" ng-click="resetPredicates();">Cancel</a>
+        <a href="#!" class="left modal-close waves-effect waves-green btn-flat" ng-click="resetPredicates();searchJob();">Cancel</a>
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addJob()">Submit</a>
     </div>
 </div>

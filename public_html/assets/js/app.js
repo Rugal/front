@@ -185,6 +185,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
             $http({method: 'GET', url: $scope.HOST + '/student/' + sid})
                     .then(function (response) {
                         var get = response.data.data;
+                        $scope.print(get);
                         $scope.predicates.personal.availability = get.availability;
                         $scope.predicates.personal.nationality = get.country.cid;
                         $scope.predicates.personal.status = get.status;
@@ -342,6 +343,10 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     $scope.predicates.experience.exp[i] = null;
                 }
             }
+            $scope.predicates.education.skillsMerged =
+                    $scope.predicates.education.skills[0]
+                    .concat($scope.predicates.education.skills[1])
+                    .concat($scope.predicates.education.skills[2]);
             $scope.print();
             $http({method: 'POST', url: $scope.HOST + '/admin/student', data: $scope.predicates})
                     .then(function (response) {}, function (response) {});

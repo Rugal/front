@@ -1,10 +1,56 @@
-<link href="assets/css/student.css" rel="stylesheet">
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center"><i class="material-icons">polymer</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#" ng-click="signout();">Sign out</a></li>
+<link href="student/assets/css/student.css" rel="stylesheet">
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center"><i class="material-icons">polymer</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#" ng-click="signout();">Sign out</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a class="center">Job</a>
+            </li>
+            <li>
+                <button data-target="job-basic-modal" class="modal-trigger btn waves-effect waves-light"
+                        ng-click="loadAllSkills();loadAllJobGroups();loadAllTypes();loadAllCities();">
+                    Basic
+                </button>
+            </li>
+            <li class="divider" style="height: 15px;"></li>
+            <li>
+                <button class="btn waves-effect waves-light red" ng-click="print(jobPredicate); resetPredicates();">Reset
+                    <i class="material-icons right">settings_backup_restore</i>
+                </button>
+            </li>
+            <li>
+                <button class="btn waves-effect waves-light blue" ng-click="searchJob();">Search
+                    <i class="material-icons right">thumb_up</i>
+                </button>
+            </li>
         </ul>
     </div>
-</nav>
+    <!-- /#sidebar-wrapper -->
+</div>
+
+<!-- /#wrapper -->
+<div style="position: absolute; left:220px; width: 80%">
+    <table ng-table="" class="highlight table " >
+        <tr ng-repeat="job in preload.jobs track by job.jid">
+            <td data-title="'JID'"   sortable="'jid'"><a ng-click="getJob(job.jid)" >{{job.jid}}</a></td>
+            <td data-title="'Job Group'" filter="{ name :'text'}">{{job.jobGroup.name}}</td>
+            <td data-title="'Company'" filter="{ name :'text'}">{{job.company.name}}</td>
+            <td data-title="'Company Type'" filter="{ name: 'text'}">{{job.company.companyType.name}}</td>
+            <td data-title="'City'" filter="{ name: 'text'}">{{job.company.city.name}}</td>
+            <td data-title="'Salary'" filter="{ name: 'text'}">{{job.salary}}</td>
+            <td><button class="red btn btn-small" ng-click="deleteJob(job.jid);searchJob();">  <i class="material-icons">not_interested</i> </button></td>
+        </tr>
+    </table>
+</div>

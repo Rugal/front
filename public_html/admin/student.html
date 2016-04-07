@@ -11,7 +11,7 @@
             </li>
             <li>
                 <button data-target="education-modal" class="modal-trigger btn waves-effect waves-light"
-                        ng-click="loadAllCountries();loadAllCertifications(); loadAllSkills();">Education</button>
+                        ng-click="loadAllCountries(); loadAllCertifications(); loadAllSkills();">Education</button>
             </li>
             <li>
                 <button data-target="experience-modal" class="modal-trigger btn waves-effect waves-light"
@@ -31,7 +31,6 @@
         </ul>
     </div>
 </div>
-
 <div style="position: absolute; left:220px; width: 80%">
     <table ng-table="" class="highlight table " show-filter="true">
         <tr ng-repeat="student in preload.students track by student.sid">

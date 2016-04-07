@@ -19,7 +19,7 @@ nav
     z-index: 1000;
     position: fixed;
     left: 250px;
-    width: 100;
+    width: 100px;
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
@@ -155,8 +155,8 @@ nav
 }
 
 
-#education-modal 
+/*#education-modal
 {
     height: 85%;
     max-height: 90%;
-}
+}*/

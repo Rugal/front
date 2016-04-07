@@ -2,9 +2,9 @@ imsApp = angular.module('imsApp', ['ui.materialize', 'ngTable']);
 imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http) {
         $scope.HOST = 'http://localhost:8080';
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
-        $scope.login = null;
         $scope.current = $scope.pages[0];
         $scope.preload = {
+            login : null,
             skillTypes: [{stid: 1, name: "Technical"}, {name: "CMS", stid: 2}, {name: "Operating System", stid: 3}],
             types: [],
             certifications: [],
@@ -25,7 +25,15 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         };
         $scope.switchPage = function ()
         {
-            $scope.current = $scope.pages[2];
+            console.log($scope.preload.login);
+            if ($scope.preload.login === 'admin')
+            {
+                $scope.current = $scope.pages[2];
+            } else
+            {
+                $scope.current = $scope.pages[1];
+            }
+            $scope.preload.login = null;
         };
         $scope.loadAllJobGroups = function ()
         {
@@ -280,7 +288,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.resetPredicates();
         $scope.adminPages = ['admin/student.html', 'admin/company.html', 'admin/job.html'];
-        $scope.adminCurrent = $scope.adminPages[2];
+        $scope.adminCurrent = $scope.adminPages[0];
         $scope.searchJob = function ()
         {
             $scope.jobPredicate.requirements =

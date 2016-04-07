@@ -176,6 +176,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                             var get = response.data.data;
                             for (var i = 0; i < get.length; i++)
                             {
+                                $scope.predicates.experience.exp[i] = {};
                                 $scope.predicates.experience.exp[i].com = get[i].company.cid;
                                 $scope.predicates.experience.exp[i].from = get[i].startDate;
                                 $scope.predicates.experience.exp[i].to = get[i].endDate;
@@ -254,7 +255,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     education:
                             {
                                 skills: [[], [], []],
-                                degrees: [0, 0, 0],
+                                degrees: [],
                                 deg: [{uid: 0, mid: 0}, {uid: 0, mid: 0}, {uid: 0, mid: 0}],
                                 certifications: []
                             },
@@ -306,6 +307,7 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     $scope.predicates.education.skills[0]
                     .concat($scope.predicates.education.skills[1])
                     .concat($scope.predicates.education.skills[2]);
+            $scope.print($scope.predicates);
             $http({method: 'PUT', url: $scope.HOST + '/admin/student',
                 headers: {'Content-Type': 'application/json'}, data: $scope.predicates})
                     .then(function (response) {

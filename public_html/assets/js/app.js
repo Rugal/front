@@ -4,7 +4,7 @@ imsApp.controller('indexController', ['$scope', '$http', function ($scope, $http
         $scope.pages = ['login.html', 'student/student.html', 'admin/admin.html'];
         $scope.current = $scope.pages[0];
         $scope.preload = {
-            login : null,
+            login: null,
             skillTypes: [{stid: 1, name: "Technical"}, {name: "CMS", stid: 2}, {name: "Operating System", stid: 3}],
             types: [],
             certifications: [],
@@ -130,6 +130,14 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
                     .then(function (response) {
                         $scope.companyPredicate = response.data.data;
                         $('#add-company-modal').openModal();
+                    }, function (response) {});
+        };
+        $scope.getJob = function (jid)
+        {
+            $http({method: 'GET', url: $scope.HOST + '/job/' + jid})
+                    .then(function (response) {
+                        $scope.jobPredicate = response.data.data;
+                        $('#add-job-modal').openModal();
                     }, function (response) {});
         };
         $scope.deleteCompany = function (cid)
@@ -373,6 +381,10 @@ imsApp.controller('adminController', ['$scope', '$http', function ($scope, $http
         };
         $scope.addJob = function ()
         {
+            $scope.jobPredicate.requirements =
+                    $scope.jobPredicate.skills[0]
+                    .concat($scope.jobPredicate.skills[1])
+                    .concat($scope.jobPredicate.skills[2]);
             $http({method: 'POST', url: $scope.HOST + '/admin/job', data: $scope.jobPredicate})
                     .then(function (response) {}, function (response) {});
         };
